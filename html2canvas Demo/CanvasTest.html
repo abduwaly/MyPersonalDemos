@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head> 
+<title>Aboo's Canvas</title>
+<script type="text/javascript" src="http://cdn.static.runoob.com/libs/jquery/1.10.2/jquery.min.js"></script>
+<script type="text/javascript" src="http://html2canvas.hertzen.com/build/html2canvas.js"></script>
+         
+<style>
+#game-d1
+{
+	height:100px;width:200px;
+	background:red;
+	position:relative;
+	
+}
+
+#game-d2
+{
+	bottom:60px;
+	left:30px;
+	height:40px;width:70px;
+	background:yellow;
+	position:relative;
+	
+}
+
+</style>
+
+</head>
+<body>
+
+<div id="game-source">
+	<div id="game-d1"></div>
+	<div id="game-d2"></div>
+	<input value="this is .VVV.."/>
+</div>
+
+
+<div id="game-target" style="margin-top:150px;">
+	<button id="game-merge">合成</button>
+	<p>下面是合成之后的图片：</P>
+	<img id="game-target-img" src=""/>
+</div>
+
+</body>
+<script  type="text/javascript" >
+        $(document).ready( function(){
+			$("#game-merge").on("click", function(event) {
+					console.log("clicked!");
+					event.preventDefault();
+					html2canvas($("#game-source"), {
+					allowTaint: true,
+					taintTest: false,
+					onrendered: function(canvas) {
+						console.log(canvas);
+						canvas.id = "mycanvas";
+						//生成base64图片数据
+						var dataUrl = canvas.toDataURL();
+						$("#game-target-img").attr("src",dataUrl);
+						console.log(dataUrl);
+					   
+					}
+				});
+			}); 
+        });
+         
+        </script>
+</html>

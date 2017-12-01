@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Test Face++</title>
+    <style>
+
+        #avatar-img{
+            height: 200px;
+            width: 200px;
+        }
+
+        #avatar-img img{
+            width: 100%;
+            height:100%;
+        }
+        .diy-input-file{
+            margin: 5% 7%;
+            padding: 0;
+            width: 200px;
+        }
+        .fileinput-button input{
+            position:absolute;
+            right:0;
+            opacity: 0;
+            width:100%;
+        }
+
+    </style>
+</head>
+<body>
+
+
+    <div id="avatar-img">
+        <img src="">
+    </div>
+
+    <div class="diy-input-file">
+       <input id="select-img" type="file" name="file" accept="image/jpeg,image/jpg,image/png">
+    </div>
+
+    <button type="submit">GO!</button>
+
+    <p id="res">** Result **</p>
+
+</body>
+
+<script src="http://cdn.static.runoob.com/libs/jquery/1.10.2/jquery.min.js"></script>
+<script>
+
+    $("input[type='file']").change(function(){
+        var file = this.files[0];
+        if (window.FileReader) {
+            var reader = new FileReader();
+            reader.readAsDataURL(file);
+
+            reader.onloadend = function (e) {
+                $("#avatar-img img").attr("src",e.target.result);
+            };
+        }
+    });
+
+    $("button[type='submit']").click(function () {
+
+        var formData = new FormData();
+        formData.append('image_file', $('#select-img')[0].files[0]);
+        formData.append('api_key',"ZuCQAfOo7Qj9yjank0-4kaYO5eSXFXMa");
+        formData.append('api_secret',"4W3YSTaXOGPO_vSWslGlY1gUs7SMbiq_");
+        formData.append('return_landmark',2);
+        formData.append('return_attributes',"gender,age,smiling,headpose,facequality,blur,eyestatus,emotion,ethnicity,beauty,mouthstatus,eyegaze,skinstatus");
+//        formData.append('calculate_all',1);
+//        formData.append('face_rectangle','');
+
+        $.ajax({
+            url: 'https://api-cn.faceplusplus.com/facepp/v3/detect',
+            type: 'POST',
+            cache: false,
+            data: formData,
+            processData: false,
+            contentType: false
+        }).done(function(res) {
+            console.log('****** successfully ******',res);
+            $("#res").html(JSON.stringify(res))
+        }).fail(function(err) {
+            console.error("##### error ######",err);
+        });
+
+    });
+
+</script>
+
+</html>

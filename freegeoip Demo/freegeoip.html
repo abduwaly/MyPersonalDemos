@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+
+
+
+
+<input placeholder="ip or hostname"/>
+<button>GO</button>
+
+1.xml
+<p><P>
+2.csv
+<p><P>
+3.json
+<p><P>
+4.jsonp  <input placeholder='your padding (your function name)'/>
+<div id="jsonp"></div>
+
+<!--
+//TODO:
+<script src="http://freegeoip.net/json/{ip or hostname}/?callback={func_name}"></script>
+-->
+
+
+
+<script src="http://cdn.static.runoob.com/libs/jquery/1.10.2/jquery.min.js"></script>
+<script type="text/javascript" >
+	//TODO:
+	function handleRes(res){
+		$("#jsonp").html(JSON.stringify(res));
+	}
+</script>
+
+<script src="http://freegeoip.net/json/?callback=handleRes"></script>

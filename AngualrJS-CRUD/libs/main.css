@@ -1,0 +1,50 @@
+body,div{
+    padding:0;
+    margin:0;
+}
+#main{
+    background-color: whitesmoke;
+    float: right;
+    width: 60%;
+    margin: 5%;
+}
+.header{
+    height: 3em;
+    width:100%;
+    background: darkcyan;
+}
+.brand{
+    font-size: 2em;
+    line-height: 1.5em;
+    color: white;
+    display: inline-block;
+}
+.header-user-info{
+    height: 100%;
+    display: inline-block;
+    float: right;
+}
+.header-user-info span{
+    line-height: 3em;
+}
+.sidebar{
+    float: left;
+    width:20%;
+    height: 100%;
+    background: #2c1c3a;
+    color: white;
+    padding-bottom: 100%
+}
+.sidebar li{
+    line-height: 2em;
+}
+.footer{
+    float: right;
+    bottom: 0;
+    width: 100%;
+    height: 2em;
+    background-color: #314c3e;
+    text-align: center;
+    line-height: 2em;
+    color: #FFFFFF;
+}

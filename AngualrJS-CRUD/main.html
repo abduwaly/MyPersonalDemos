@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>AngularJS CRUD</title>
+</head>
+<link rel="stylesheet" href="libs/main.css">
+<script src="libs/angular.min.js"></script>
+<script src="libs/angular-route.min.js"></script>
+<style>
+
+</style>
+<body ng-app="abduwaly" ng-controller="abooController">
+    <abduwaly-header></abduwaly-header>
+    <abduwaly-sidebar></abduwaly-sidebar>
+    <div id="main" ng-view mycolor="red"></div>
+    <abduwaly-footer></abduwaly-footer>
+</body>
+</html>
+<script>
+    var myapp = angular.module('abduwaly',[]);
+
+    //创建自定义指令
+    myapp.directive("abduwalyHeader", function() {
+        return {
+            templateUrl : "header/header.html",
+            replace : true,
+            controller : function ($scope) {
+                $scope.location = function () {
+                    return "[ "+$scope.ip_data.region_name +","+$scope.ip_data.country_name +" ]";
+                }
+            },
+            scope: true
+        };
+    }).directive("abduwalySidebar", function() {
+        return {
+            templateUrl : "sidebar/sidebar.html",
+            replace : true
+        };
+    }).directive("abduwalyFooter", function() {
+        return {
+            templateUrl : "footer/footer.html",
+            replace : true
+        };
+    });
+    //控制器
+    myapp.controller('abooController',function ($scope,$http) {
+        $scope.username = "Abduwaly";
+        $scope.userstate = "[online]";
+        //
+        $http.get('http://www.freegeoip.net/json/',null).then(function (response) {
+            console.log(response);
+            $scope.ip_data = response.data;
+        }, function (err) {
+
+        });
+    });
+
+    //路由
+//    angular.module('abduwaly',[route])
+
+
+</script>

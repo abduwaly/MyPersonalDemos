@@ -1,0 +1,19 @@
+<P>List:</P>
+<div>
+    <ul>
+        <li ng-repeat="x in users track by $index">{{x.name+" ,  "+x.age}}
+            <button ng-click="delUser($index)">DELETE</button>
+            <button ng-click="toUpdate($index)">Update</button>
+        </li>
+    </ul>
+</div>
+<p>Update:</p>
+<div>
+    <label>UserName </label>
+    <input type="text" ng-model="upName"/>
+    <br>
+    <label>Age </label>
+    <input type="number" ng-model="upAge">
+
+    <button ng-click="UpdateUser()">Update</button>
+</div>

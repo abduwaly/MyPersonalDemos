@@ -1,0 +1,19 @@
+<div>
+    <label>UserName </label>
+    <input type="text" ng-model="user.name"/>
+    <br>
+    <label>Age </label>
+    <input type="number" ng-model="user.age">
+
+    <button ng-click="addUser(user.name,user.age)">ADD</button>
+
+</div>
+<hr>
+<p style="color:red;">DELETE btn does not work here ! Cos the delUser() func is not available in this scope!</p>
+<div>
+    <ul>
+        <li ng-repeat="x in users track by $index">{{x.name+" ,  "+x.age}}
+            <button ng-click="delUser($index)">DELETE</button>
+        </li>
+    </ul>
+</div>

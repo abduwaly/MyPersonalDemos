@@ -1,0 +1,63 @@
+<html>
+	<head>
+		<title>Test Drag </title>
+		<style>
+			#dragger{
+				background-image:url(ba.jpg);
+				background-size: contain;
+				background-repeat: no-repeat;
+				width: 300px;
+				height: 300px;
+				position: absolute;
+			}
+		</style>
+	</head>
+	<body bgcolor="#d3d3d3">
+		<p>1.按住鼠标随意拖动蓝色方块</p>
+		<p>2.上下滑动鼠标滚轮</p>
+		<div id="dragger">
+			
+		</div>
+	</body>
+	<script type="text/javascript" src="jquery-1.8.3.min.js"></script>
+	<script type="text/javascript" src="./jquery-mousewheel-3.0.6/jquery.mousewheel.min.js"></script>
+	<script>
+		$(document).ready(function(){	
+			//随意拖动
+			$("#dragger").bind("mousedown",function(e){
+				var movementX = e.clientX - $("#dragger").offset().left;
+				var movementY = e.clientY - $("#dragger").offset().top;
+				
+				$(document).bind("mousemove",function(ev){
+					$("#dragger").css("left",ev.clientX - movementX);
+					$("#dragger").css("top",ev.clientY - movementY);
+				});
+				
+				$(document).bind("mouseup",function(){
+					$(document).unbind("mousemove");
+					$(document).unbind("mouseup");
+				});
+			});
+			
+			//鼠标滚轮滚动
+			$("#dragger").mousewheel(function(event, delta, deltaX, deltaY) {
+				
+				console.log("event",event);
+				console.log("delta",delta);
+				console.log("deltaX",deltaX);
+				console.log("deltaY",deltaY);
+				
+				if(delta == -1 && $(this).width()>40){
+					$("#dragger").css('width',$(this).width()-20);
+					$("#dragger").css('height',$(this).height()-20);
+				}else if(delta == 1 && $(this).width()<500){
+					$("#dragger").css('width',$(this).width()+20);
+					$("#dragger").css('height',$(this).height()+20);
+				}
+
+			});	
+			
+		});
+	
+	</script>
+</html>

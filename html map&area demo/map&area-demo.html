@@ -1,0 +1,13 @@
+<p style="background:yellow;color:red;font-size: 1.5em;">Click things on the desk and see what happened to url</p>
+
+<img src="desk.jpg" alt="Desk" usemap="#desk" width="300" height="200">
+<map id="desk" name="desk">
+    <area shape="rect" coords="45,3,200,80" href="#PC" alt="rectangle">
+    <area shape="circle" coords="40,110,40" href="#A cup of coffe" alt="circle">
+	<area shape="poly" coords="200,135,275,75,297,85,297,140,260,180" href="#Calculator" alt="poly">
+</map>
+
+<h3>How to remove the area's outline?</h3>
+<p>
+# Set the attr of  <span style="color:white;background:black;">&lt;area&gt;</span>  as onfocus="blur(this);"
+</p>

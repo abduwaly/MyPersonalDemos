@@ -1,0 +1,1667 @@
+<!DOCTYPE html>
+<!-- saved from url=(0037)http://www.jianshu.com/p/42e11515c10f -->
+<html><!--<![endif]--><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no">
+
+  <!-- Start of Baidu Transcode -->
+  <meta http-equiv="Cache-Control" content="no-siteapp">
+  <meta http-equiv="Cache-Control" content="no-transform">
+  <meta name="applicable-device" content="pc,mobile">
+  <meta name="MobileOptimized" content="width">
+  <meta name="HandheldFriendly" content="true">
+  <meta name="mobile-agent" content="format=html5;url=http://www.jianshu.com/p/42e11515c10f">
+  <!-- End of Baidu Transcode -->
+
+    <meta name="description" content="2017年12月7日更新，添加了clean-webpack-plugin,babel-env-preset,添加本文涉及到的所有代码的示例，如果你在学习过程中出错了，可点击此处参考 写在前面的话 阅读本文之前，先看下面这个webpack的配置文件，如果每一项你都懂，那本文能带给你的收获也许就比较有限，你可以快速浏览或直接跳过；如果你和十天前的我一样，对很多选项存在着疑惑，那花一段时间慢慢阅读...">
+
+  <meta name="360-site-verification" content="604a14b53c6b871206001285921e81d8">
+  <meta property="wb:webmaster" content="294ec9de89e7fadb">
+  <meta property="qc:admins" content="104102651453316562112116375">
+  <meta property="qc:admins" content="11635613706305617">
+  <meta property="qc:admins" content="1163561616621163056375">
+  <meta name="google-site-verification" content="cV4-qkUJZR6gmFeajx_UyPe47GW9vY6cnCrYtCHYNh4">
+  <meta name="google-site-verification" content="HF7lfF8YEGs1qtCE-kPml8Z469e2RHhGajy6JPVy5XI">
+  <meta http-equiv="mobile-agent" content="format=html5; url=http://www.jianshu.com/p/42e11515c10f">
+
+  <!-- Apple -->
+  <meta name="apple-mobile-web-app-title" content="简书">
+
+    <!--  Meta for Smart App Banner -->
+  <meta name="apple-itunes-app" content="app-id=888237539, app-argument=jianshu://notes/5124994">
+  <!-- End -->
+
+  <!--  Meta for Twitter Card -->
+  <meta content="summary" property="twitter:card">
+  <meta content="@jianshucom" property="twitter:site">
+  <meta content="入门Webpack，看这篇就够了" property="twitter:title">
+  <meta content="2017年12月7日更新，添加了clean-webpack-plugin,babel-env-preset,添加本文涉及到的所有代码的示例，如果你在学习过程中出错了，可点击此处参考 写在前面的话 阅读本文之前，先看下面这个webpack的配置文件，如果每一项你都懂，那本文能带给你的收获也许就比较有限，你可以快速浏览或直接跳过；如果你和十天前的我一样，对很多选项存在着疑惑，那花一段时间慢慢阅读本文，你的疑惑一定一个一个都会消失；如果你以前没怎么接触过Webpack，而你又你对webpack感兴趣，那么动手跟着本文中那个贯穿始终的例子写一次，写完以后你会发现你已明明白白的走进了Webpack..." property="twitter:description">
+  <meta content="http://www.jianshu.com/p/42e11515c10f" property="twitter:url">
+  <!-- End -->
+
+  <!--  Meta for OpenGraph -->
+  <meta property="fb:app_id" content="865829053512461">
+  <meta property="og:site_name" content="简书">
+  <meta property="og:title" content="入门Webpack，看这篇就够了">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="http://www.jianshu.com/p/42e11515c10f">
+  <meta property="og:description" content="2017年12月7日更新，添加了clean-webpack-plugin,babel-env-preset,添加本文涉及到的所有代码的示例，如果你在学习过程中出错了，可点击此处参考 写在前面的话...">
+  <!-- End -->
+
+  <!--  Meta for Facebook Applinks -->
+  <meta property="al:ios:url" content="jianshu://notes/5124994">
+  <meta property="al:ios:app_store_id" content="888237539">
+  <meta property="al:ios:app_name" content="简书">
+
+  <meta property="al:android:url" content="jianshu://notes/5124994">
+  <meta property="al:android:package" content="com.jianshu.haruki">
+  <meta property="al:android:app_name" content="简书">
+  <!-- End -->
+
+
+    <title>入门Webpack，看这篇就够了 - 简书</title>
+
+  <meta name="csrf-param" content="authenticity_token">
+<meta name="csrf-token" content="yBELJEJxyBE6NHRfLWGBtoQ+nDDfYHFk5+bjvw5YQUmHZQt7TXdu889TA6BiXaU7M4mriVQPSf0DE/Ey0Xq2OA==">
+
+  <link rel="stylesheet" media="all" href="./入门Webpack，看这篇就够了 - 简书_files/web-8e4fd86a49b411611e61.css">
+  
+  <link rel="stylesheet" media="all" href="./入门Webpack，看这篇就够了 - 简书_files/entry-a5d96d4884b6cddc11f7.css">
+
+  <link href="http://cdn2.jianshu.io/assets/favicons/favicon-03411b154a430b85d807b4366489c21122fb983a38f3d7ca926f882e6367b13e.ico" rel="icon">
+      <link rel="apple-touch-icon-precomposed" href="http://cdn2.jianshu.io/assets/apple-touch-icons/57-a6f1f1ee62ace44f6dc2f6a08575abd3c3b163288881c78dd8d75247682a4b27.png" sizes="57x57">
+      <link rel="apple-touch-icon-precomposed" href="http://cdn2.jianshu.io/assets/apple-touch-icons/72-fb9834bcfce738fd7b9c5e31363e79443e09a81a8e931170b58bc815387c1562.png" sizes="72x72">
+      <link rel="apple-touch-icon-precomposed" href="http://cdn2.jianshu.io/assets/apple-touch-icons/76-49d88e539ff2489475d603994988d871219141ecaa0b1a7a9a1914f4fe3182d6.png" sizes="76x76">
+      <link rel="apple-touch-icon-precomposed" href="http://cdn2.jianshu.io/assets/apple-touch-icons/114-24252fe693524ed3a9d0905e49bff3cbd0228f25a320aa09053c2ebb4955de97.png" sizes="114x114">
+      <link rel="apple-touch-icon-precomposed" href="http://cdn2.jianshu.io/assets/apple-touch-icons/120-1bb7371f5e87f93ce780a5f1a05ff1b176828ee0d1d130e768575918a2e05834.png" sizes="120x120">
+      <link rel="apple-touch-icon-precomposed" href="http://cdn2.jianshu.io/assets/apple-touch-icons/152-bf209460fc1c17bfd3e2b84c8e758bc11ca3e570fd411c3bbd84149b97453b99.png" sizes="152x152">
+
+  <!-- Start of 访问统计 -->
+  <script src="./入门Webpack，看这篇就够了 - 简书_files/push.js.download"></script><script src="./入门Webpack，看这篇就够了 - 简书_files/hm.js.download"></script><script async="" src="./入门Webpack，看这篇就够了 - 简书_files/analytics.js.download"></script><script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-35169517-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+<script>
+  var _hmt = _hmt || [];
+  (function() {
+    var hm = document.createElement("script");
+    hm.src = "//hm.baidu.com/hm.js?0c0e9d9b1e7d617b3e6842e85b9fb068";
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(hm, s);
+  })();
+</script>
+
+  <!-- End of 访问统计 -->
+<style type="text/css">
+@charset "UTF-8";
+/*
+ * 变量
+*/
+.main {
+  position: relative;
+  margin: 0 auto;
+  padding: 0 0 30px 0;
+  width: 620px;
+}
+.main .title {
+    padding-left: 8px;
+    border-left: 3px solid #EA6F5A;
+    line-height: 1;
+    font-size: 15px;
+}
+.main .collection-settings {
+    position: absolute;
+    top: 2px;
+    right: 0;
+    font-size: 13px;
+    color: #A0A0A0;
+}
+.main .collection-settings span {
+      padding-left: 4px;
+}
+.main .include-collection {
+    width: 100%;
+    padding-top: 20px;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: row;
+        -ms-flex-direction: row;
+            flex-direction: row;
+    -webkit-box-pack: start;
+    -webkit-justify-content: flex-start;
+        -ms-flex-pack: start;
+            justify-content: flex-start;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-flex-wrap: wrap;
+        -ms-flex-wrap: wrap;
+            flex-wrap: wrap;
+}
+.main .include-collection .item {
+      display: inline-block;
+      margin: 0 12px 12px 0;
+      min-height: 32px;
+      background-color: white;
+      border: 1px solid #DCDCDC;
+      border-radius: 4px;
+      vertical-align: top;
+      overflow: hidden;
+}
+.main .include-collection .item img {
+        width: 32px;
+        height: 32px;
+}
+.main .include-collection .item .name {
+        display: inline-block;
+        padding: 0 10px;
+        font-size: 14px;
+}
+.main .include-collection .add-collection-wrap {
+      margin: 0 12px 12px 0;
+}
+.main .include-collection .add-collection {
+      padding: 8px 12px;
+      font-size: 14px;
+      border: 1px solid #DCDCDC;
+      border-radius: 4px;
+}
+.main .include-collection .add-collection i {
+        margin-right: 4px;
+        color: #969696;
+}
+.main .recommend-note a {
+    position: relative;
+    margin: 20px 2px 0 0;
+    width: 200px;
+    height: 160px;
+    display: inline-block;
+}
+.main .recommend-note a:after {
+      content: "";
+      position: absolute;
+      width: 200px;
+      height: 160px;
+      border-radius: 0 0 4px 4px;
+      -webkit-box-shadow: inset 0px -80px 50px -22px rgba(0, 0, 0, 0.6);
+              box-shadow: inset 0px -80px 50px -22px rgba(0, 0, 0, 0.6);
+      top: 0;
+      left: 0;
+      z-index: 1;
+}
+.main .recommend-note .name {
+    position: absolute;
+    bottom: 40px;
+    left: 10px;
+    right: 10px;
+    font-size: 17px;
+    font-weight: bold;
+    color: #ffffff;
+    z-index: 2;
+}
+.main .recommend-note .author {
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+    right: 10px;
+    z-index: 2;
+}
+.main .recommend-note .avatar {
+    width: 20px;
+    height: 20px;
+    display: inline-block;
+}
+.main .recommend-note .avatar img {
+      border-radius: 50%;
+}
+.main .recommend-note .author-name {
+    font-size: 12px;
+    color: #ffffff;
+    display: inline-block;
+    vertical-align: -1px;
+}
+.main .show-more {
+    margin: 0 12px 12px 0;
+    font-size: 14px;
+    color: #A0A0A0;
+}
+</style></head>
+
+  <body lang="zh-CN" class="reader-black-font">
+    <!-- 全局顶部导航栏 -->
+<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+  <div class="width-limit">
+    <!-- 左上方 Logo -->
+    <a class="logo" href="http://www.jianshu.com/"><img src="./入门Webpack，看这篇就够了 - 简书_files/logo-58fd04f6f0de908401aa561cda6a0688.png" alt="Logo"></a>
+
+    <!-- 右上角 -->
+      <!-- 未登录显示登录/注册/写文章 -->
+      <a class="btn write-btn" target="_blank" href="http://www.jianshu.com/writer#/">
+        <i class="iconfont ic-write"></i>写文章
+</a>      <a class="btn sign-up" href="http://www.jianshu.com/sign_up">注册</a>
+      <a class="btn log-in" href="http://www.jianshu.com/sign_in">登录</a>
+
+    <!-- 如果用户登录，显示下拉菜单 -->
+
+    <div class="style-mode"><a class="style-mode-btn"><i class="iconfont ic-navigation-mode"></i></a> <div class="popover-modal" style="left: 0px; display: none;"><div class="meta"><i class="iconfont ic-navigation-night"></i><span>夜间模式</span></div> <div class="switch day-night-group"><a class="switch-btn">开</a> <a class="switch-btn active">关</a></div> <hr> <div class="switch font-family-group"><a class="switch-btn font-song">宋体</a> <a class="switch-btn font-hei active">黑体</a></div> <div class="switch"><a class="switch-btn active">简</a> <a class="switch-btn">繁</a></div></div></div>
+    <div class="container">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#menu" aria-expanded="false">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+      </div>
+      <div class="collapse navbar-collapse" id="menu">
+        <ul class="nav navbar-nav">
+            <li class="tab ">
+              <a href="http://www.jianshu.com/">
+                <span class="menu-text">首页</span><i class="iconfont ic-navigation-discover menu-icon"></i>
+</a>            </li>
+            <li class="tab ">
+              <a id="web-nav-app-download-btn" class="app-download-btn" href="http://www.jianshu.com/apps?utm_medium=desktop&amp;utm_source=navbar-apps"><span class="menu-text">下载App</span><i class="iconfont ic-navigation-download menu-icon"></i></a>
+            </li>
+          <li class="search">
+            <form target="_blank" action="http://www.jianshu.com/search" accept-charset="UTF-8" method="get"><input name="utf8" type="hidden" value="✓">
+              <input type="text" name="q" id="q" value="" autocomplete="off" placeholder="搜索" class="search-input">
+              <a class="search-btn" href="javascript:void(null)"><i class="iconfont ic-search"></i></a>
+</form>          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</nav>
+
+    
+<div class="note">
+  <a target="_blank" href="http://www.jianshu.com/apps/download?utm_source=sbc" id="web-note-ad-fixed" style="left: 1054.5px;"><span class="close">×</span></a>
+  <div class="post">
+    <div class="article">
+        <h1 class="title">入门Webpack，看这篇就够了</h1>
+
+        <!-- 作者区域 -->
+        <div class="author">
+          <a class="avatar" href="http://www.jianshu.com/u/7091a52ac9e5">
+            <img src="./入门Webpack，看这篇就够了 - 简书_files/e83d94a60691.jpg" alt="96">
+</a>          <div class="info">
+            <span class="name"><a href="http://www.jianshu.com/u/7091a52ac9e5">zhangwang</a></span>
+            <!-- 关注用户按钮 -->
+            <a class="btn btn-success follow"><i class="iconfont ic-follow"></i><span>关注</span></a>
+            <!-- 文章数据信息 -->
+            <div class="meta">
+              <!-- 如果文章更新时间大于发布时间，那么使用 tooltip 显示更新时间 -->
+                <span class="publish-time" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="最后编辑于 2017.12.11 11:26">2016.08.05 11:21*</span>
+              <span class="wordage">字数 7229</span>
+            <span class="views-count">阅读 536225</span><span class="comments-count">评论 724</span><span class="likes-count">喜欢 2193</span><span class="rewards-count ">赞赏 80</span></div>
+          </div>
+          <!-- 如果是当前作者，加入编辑按钮 -->
+        </div>
+        <!-- -->
+
+        <!-- 文章内容 -->
+        <div data-note-content="" class="show-content">
+          <blockquote>
+<p>2017年12月7日更新，添加了<code>clean-webpack-plugin</code>,<code>babel-env-preset</code>,添加本文涉及到的所有代码的示例，如果你在学习过程中出错了，可<a href="https://link.jianshu.com/?t=https://github.com/zhangwang1990/blogs/tree/master/sources/webpackTest" target="_blank" rel="nofollow">点击此处参考</a></p>
+</blockquote>
+<h3>写在前面的话</h3>
+<blockquote>
+<p>阅读本文之前，先看下面这个webpack的配置文件，如果每一项你都懂，那本文能带给你的收获也许就比较有限，你可以快速浏览或直接跳过；如果你和十天前的我一样，对很多选项存在着疑惑，那花一段时间慢慢阅读本文，你的疑惑一定一个一个都会消失；如果你以前没怎么接触过Webpack，而你又你对webpack感兴趣，那么动手跟着本文中那个贯穿始终的例子写一次，写完以后你会发现你已明明白白的走进了Webpack的大门。</p>
+</blockquote>
+<pre class="hljs undefined"><code class="js">// 一个常见的`webpack`配置文件
+const webpack = require('webpack');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
+
+module.exports = {
+        entry: __dirname + "/app/main.js", //已多次提及的唯一入口文件
+        output: {
+            path: __dirname + "/build",
+            filename: "bundle-[hash].js"
+        },
+        devtool: 'none',
+        devServer: {
+            contentBase: "./public", //本地服务器所加载的页面所在的目录
+            historyApiFallback: true, //不跳转
+            inline: true,
+            hot: true
+        },
+        module: {
+            rules: [{
+                    test: /(\.jsx|\.js)$/,
+                    use: {
+                        loader: "babel-loader"
+                    },
+                    exclude: /node_modules/
+                }, {
+                    test: /\.css$/,
+                    use: ExtractTextPlugin.extract({
+                        fallback: "style-loader",
+                        use: [{
+                            loader: "css-loader",
+                            options: {
+                                modules: true,
+                                localIdentName: '[name]__[local]--[hash:base64:5]'
+                            }
+                        }, {
+                            loader: "postcss-loader"
+                        }],
+                    })
+                }
+            }
+        ]
+    },
+    plugins: [
+        new webpack.BannerPlugin('版权所有，翻版必究'),
+        new HtmlWebpackPlugin({
+            template: __dirname + "/app/index.tmpl.html" //new 一个这个插件的实例，并传入相关的参数
+        }),
+        new webpack.optimize.OccurrenceOrderPlugin(),
+        new webpack.optimize.UglifyJsPlugin(),
+        new ExtractTextPlugin("style.css")
+    ]
+};
+
+</code></pre>
+<h3>什么是WebPack，为什么要使用它？</h3>
+<h4>为什要使用WebPack</h4>
+<p>现今的很多网页其实可以看做是功能丰富的应用，它们拥有着复杂的JavaScript代码和一大堆依赖包。为了简化开发的复杂度，前端社区涌现出了很多好的实践方法</p>
+<ul>
+<li>
+<strong>模块化</strong>，让我们可以把复杂的程序细化为小的文件;</li>
+<li>类似于TypeScript这种在JavaScript基础上拓展的开发语言：使我们能够实现目前版本的JavaScript不能直接使用的特性，并且之后还能转换为JavaScript文件使浏览器可以识别；</li>
+<li>Scss，less等CSS预处理器</li>
+<li>...</li>
+</ul>
+<p>这些改进确实大大的提高了我们的开发效率，但是利用它们开发的文件往往需要进行额外的处理才能让浏览器识别,而手动处理又是非常繁琐的，这就为WebPack类的工具的出现提供了需求。</p>
+<h4>什么是Webpack</h4>
+<p>WebPack可以看做是<strong>模块打包机</strong>：它做的事情是，分析你的项目结构，找到JavaScript模块以及其它的一些浏览器不能直接运行的拓展语言（Scss，TypeScript等），并将其转换和打包为合适的格式供浏览器使用。</p>
+<h4>WebPack和Grunt以及Gulp相比有什么特性</h4>
+<p>其实Webpack和另外两个并没有太多的可比性，Gulp/Grunt是一种能够优化前端的开发流程的工具，而WebPack是一种模块化的解决方案，不过Webpack的优点使得Webpack在很多场景下可以替代Gulp/Grunt类的工具。</p>
+<p>Grunt和Gulp的工作方式是：在一个配置文件中，指明对某些文件进行类似编译，组合，压缩等任务的具体步骤，工具之后可以自动替你完成这些任务。</p>
+<br>
+<div class="image-package">
+<div class="image-container" style="max-width: 700px; max-height: 576px; background-color: transparent;">
+<div class="image-container-fill" style="padding-bottom: 36.0%;"></div>
+<div class="image-view" data-width="1600" data-height="576"><img data-original-src="//upload-images.jianshu.io/upload_images/1031000-d0693c06bb3a00e3.png" data-original-width="1600" data-original-height="576" data-original-format="image/png" data-original-filesize="33209" style="cursor: zoom-in;" class="" src="./入门Webpack，看这篇就够了 - 简书_files/1031000-d0693c06bb3a00e3.png"></div>
+</div>
+<div class="image-caption">Grunt和Gulp的工作流程</div>
+</div>
+<p>Webpack的工作方式是：把你的项目当做一个整体，通过一个给定的主文件（如：index.js），Webpack将从这个文件开始找到你的项目的所有依赖文件，使用loaders处理它们，最后打包为一个（或多个）浏览器可识别的JavaScript文件。</p>
+<br>
+<div class="image-package">
+<div class="image-container" style="max-width: 700px; max-height: 574px; background-color: transparent;">
+<div class="image-container-fill" style="padding-bottom: 43.75%;"></div>
+<div class="image-view" data-width="1312" data-height="574"><img data-original-src="//upload-images.jianshu.io/upload_images/1031000-160bc667d3b6093a.png" data-original-width="1312" data-original-height="574" data-original-format="image/png" data-original-filesize="47657" style="cursor: zoom-in;" class="" src="./入门Webpack，看这篇就够了 - 简书_files/1031000-160bc667d3b6093a.png"></div>
+</div>
+<div class="image-caption">Webpack工作方式</div>
+</div>
+<p>如果实在要把二者进行比较，Webpack的处理速度更快更直接，能打包更多不同类型的文件。</p>
+<h3>开始使用Webpack</h3>
+<p>初步了解了Webpack工作方式后，我们一步步的开始学习使用Webpack。</p>
+<h4>安装</h4>
+<p>Webpack可以使用npm安装，新建一个空的练习文件夹（此处命名为webpack sample project），在终端中转到该文件夹后执行下述指令就可以完成安装。</p>
+<pre class="hljs undefined"><code class="js">//全局安装
+npm install -g webpack
+//安装到你的项目目录
+npm install --save-dev webpack
+</code></pre>
+<h4>正式使用Webpack前的准备</h4>
+<ol>
+<li>在上述练习文件夹中创建一个package.json文件，这是一个标准的npm说明文件，里面蕴含了丰富的信息，包括当前项目的依赖模块，自定义的脚本任务等等。在终端中使用<code>npm init</code>命令可以自动创建这个package.json文件</li>
+</ol>
+<pre class="hljs undefined"><code>npm init
+</code></pre>
+<p>输入这个命令后，终端会问你一系列诸如项目名称，项目描述，作者等信息，不过不用担心，如果你不准备在npm中发布你的模块，这些问题的答案都不重要，回车默认即可。</p>
+<ol start="2">
+<li>package.json文件已经就绪，我们在本项目中安装Webpack作为依赖包</li>
+</ol>
+<pre class="hljs undefined"><code class="js">// 安装Webpack
+npm install --save-dev webpack
+</code></pre>
+<ol start="3">
+<li>回到之前的空文件夹，并在里面创建两个文件夹,app文件夹和public文件夹，app文件夹用来存放原始数据和我们将写的JavaScript模块，public文件夹用来存放之后供浏览器读取的文件（包括使用webpack打包生成的js文件以及一个<code>index.html</code>文件）。接下来我们再创建三个文件:</li>
+</ol>
+<ul>
+<li>
+<code>index.html</code> --放在public文件夹中;</li>
+<li>
+<code>Greeter.js</code>-- 放在app文件夹中;</li>
+<li>
+<code>main.js</code>-- 放在app文件夹中;</li>
+</ul>
+<p>此时项目结构如下图所示</p>
+<br>
+<div class="image-package">
+<div class="image-container" style="max-width: 347px; max-height: 379px; background-color: transparent;">
+<div class="image-container-fill" style="padding-bottom: 109.22%;"></div>
+<div class="image-view" data-width="347" data-height="379"><img data-original-src="//upload-images.jianshu.io/upload_images/1031000-976ba1a06fd0702f.png" data-original-width="347" data-original-height="379" data-original-format="image/png" data-original-filesize="13499" style="cursor: zoom-in;" class="" src="./入门Webpack，看这篇就够了 - 简书_files/1031000-976ba1a06fd0702f.png"></div>
+</div>
+<div class="image-caption">项目结构</div>
+</div>
+<p>我们在<strong>index.html</strong>文件中写入最基础的html代码，它在这里目的在于引入打包后的js文件（这里我们先把之后打包后的js文件命名为<code>bundle.js</code>，之后我们还会详细讲述）。</p>
+<pre class="hljs undefined"><code class="html">&lt;!-- index.html --&gt;
+&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+  &lt;head&gt;
+    &lt;meta charset="utf-8"&gt;
+    &lt;title&gt;Webpack Sample Project&lt;/title&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;div id='root'&gt;
+    &lt;/div&gt;
+    &lt;script src="bundle.js"&gt;&lt;/script&gt;
+  &lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p>我们在<code>Greeter.js</code>中定义一个返回包含问候信息的<code>html</code>元素的函数,并依据CommonJS规范导出这个函数为一个模块：</p>
+<pre class="hljs undefined"><code class="js">// Greeter.js
+module.exports = function() {
+  var greet = document.createElement('div');
+  greet.textContent = "Hi there and greetings!";
+  return greet;
+};
+</code></pre>
+<p><code>main.js</code>文件中我们写入下述代码，用以把<code>Greeter模块</code>返回的节点插入页面。</p>
+<pre class="hljs undefined"><code class="js">//main.js 
+const greeter = require('./Greeter.js');
+document.querySelector("#root").appendChild(greeter());
+</code></pre>
+<h4>正式使用Webpack</h4>
+<p>webpack可以在终端中使用，在基本的使用方法如下：</p>
+<pre class="hljs bash"><code class="bash"><span class="hljs-comment"># {extry file}出填写入口文件的路径，本文中就是上述main.js的路径，</span>
+<span class="hljs-comment"># {destination for bundled file}处填写打包文件的存放路径</span>
+<span class="hljs-comment"># 填写路径的时候不用添加{}</span>
+webpack {entry file} {destination <span class="hljs-keyword">for</span> bundled file}
+</code></pre>
+<p>指定入口文件后，webpack将自动识别项目所依赖的其它文件，不过需要注意的是如果你的webpack不是全局安装的，那么当你在终端中使用此命令时，需要额外指定其在node_modules中的地址，继续上面的例子，在终端中输入如下命令</p>
+<pre class="hljs bash"><code class="bash"><span class="hljs-comment"># webpack非全局安装的情况</span>
+node_modules/.bin/webpack app/main.js public/bundle.js
+</code></pre>
+<p>结果如下</p>
+<div class="image-package">
+<div class="image-container" style="max-width: 700px; max-height: 298px;">
+<div class="image-container-fill" style="padding-bottom: 34.89%;"></div>
+<div class="image-view" data-width="854" data-height="298"><img data-original-src="//upload-images.jianshu.io/upload_images/1031000-b9e69a58e3518ba7.png" data-original-width="854" data-original-height="298" data-original-format="image/png" data-original-filesize="61584" style="cursor: zoom-in;" class="image-loading"></div>
+</div>
+<div class="image-caption">使用命令行打包</div>
+</div>
+<p>可以看出<code>webpack</code>同时编译了<code>main.js</code> 和<code>Greeter,js</code>,现在打开<code>index.html</code>,可以看到如下结果<br>
+</p><div class="image-package">
+<div class="image-container" style="max-width: 700px; max-height: 467px;">
+<div class="image-container-fill" style="padding-bottom: 58.230000000000004%;"></div>
+<div class="image-view" data-width="802" data-height="467"><img data-original-src="//upload-images.jianshu.io/upload_images/1031000-6cf1ecc41ef8c31d.png" data-original-width="802" data-original-height="467" data-original-format="image/png" data-original-filesize="13202" style="cursor: zoom-in;" class="image-loading"></div>
+</div>
+<div class="image-caption">htmlResult1</div>
+</div><p></p>
+<p>有没有很激动，已经成功的使用<code>Webpack</code>打包了一个文件了。不过在终端中进行复杂的操作，其实是不太方便且容易出错的，接下来看看Webpack的另一种更常见的使用方法。</p>
+<h4>通过配置文件来使用<code>Webpack</code>
+</h4>
+<p>Webpack拥有很多其它的比较高级的功能（比如说本文后面会介绍的<code>loaders</code>和<code>plugins</code>），这些功能其实都可以通过命令行模式实现，但是正如前面提到的，这样不太方便且容易出错的，更好的办法是定义一个配置文件，这个配置文件其实也是一个简单的JavaScript模块，我们可以把所有的与打包相关的信息放在里面。</p>
+<p>继续上面的例子来说明如何写这个配置文件，在当前练习文件夹的根目录下新建一个名为<code>webpack.config.js</code>的文件，我们在其中写入如下所示的简单配置代码，目前的配置主要涉及到的内容是入口文件路径和打包后文件的存放路径。</p>
+<pre class="hljs undefined"><code class="js">module.exports = {
+  entry:  __dirname + "/app/main.js",//已多次提及的唯一入口文件
+  output: {
+    path: __dirname + "/public",//打包后的文件存放的地方
+    filename: "bundle.js"//打包后输出文件的文件名
+  }
+}
+</code></pre>
+<blockquote>
+<p><strong>注</strong>：“__dirname”是node.js中的一个全局变量，它指向当前执行脚本所在的目录。</p>
+</blockquote>
+<p>有了这个配置之后，再打包文件，只需在终端里运行<code>webpack(非全局安装需使用node_modules/.bin/webpack)</code>命令就可以了，这条命令会自动引用<code>webpack.config.js</code>文件中的配置选项，示例如下：</p>
+<div class="image-package">
+<div class="image-container" style="max-width: 700px; max-height: 314px;">
+<div class="image-container-fill" style="padding-bottom: 36.77%;"></div>
+<div class="image-view" data-width="854" data-height="314"><img data-original-src="//upload-images.jianshu.io/upload_images/1031000-c02a675d8d8c9e56.png" data-original-width="854" data-original-height="314" data-original-format="image/png" data-original-filesize="60100" style="cursor: zoom-in;" class="image-loading"></div>
+</div>
+<div class="image-caption">配合配置文件进行打包</div>
+</div>
+<p>又学会了一种使用<code>Webpack</code>的方法，这种方法不用管那烦人的命令行参数，有没有感觉很爽。如果我们可以连<code>webpack(非全局安装需使用node_modules/.bin/webpack)</code>这条命令都可以不用，那种感觉会不会更爽~，继续看下文。</p>
+<h4>更快捷的执行打包任务</h4>
+<p>在命令行中输入命令需要代码类似于<code>node_modules/.bin/webpack</code>这样的路径其实是比较烦人的，不过值得庆幸的是<code>npm</code>可以引导任务执行，对<code>npm</code>进行配置后可以在命令行中使用简单的<code>npm start</code>命令来替代上面略微繁琐的命令。在<code>package.json</code>中对<code>scripts</code>对象进行相关设置即可，设置方法如下。</p>
+<pre class="hljs json"><code class="json">{
+  <span class="hljs-attr">"name"</span>: <span class="hljs-string">"webpack-sample-project"</span>,
+  <span class="hljs-attr">"version"</span>: <span class="hljs-string">"1.0.0"</span>,
+  <span class="hljs-attr">"description"</span>: <span class="hljs-string">"Sample webpack project"</span>,
+  <span class="hljs-attr">"scripts"</span>: {
+    <span class="hljs-attr">"start"</span>: <span class="hljs-string">"webpack"</span> // 修改的是这里，JSON文件不支持注释，引用时请清除
+  },
+  <span class="hljs-attr">"author"</span>: <span class="hljs-string">"zhang"</span>,
+  <span class="hljs-attr">"license"</span>: <span class="hljs-string">"ISC"</span>,
+  <span class="hljs-attr">"devDependencies"</span>: {
+    <span class="hljs-attr">"webpack"</span>: <span class="hljs-string">"3.10.0"</span>
+  }
+}
+</code></pre>
+<blockquote>
+<p><strong>注：</strong><code>package.json</code>中的<code>script</code>会安装一定顺序寻找命令对应位置，本地的<code>node_modules/.bin</code>路径就在这个寻找清单中，所以无论是全局还是局部安装的Webpack，你都不需要写前面那指明详细的路径了。</p>
+</blockquote>
+<p>npm的<code>start</code>命令是一个特殊的脚本名称，其特殊性表现在，在命令行中使用<code>npm start</code>就可以执行其对于的命令，如果对应的此脚本名称不是<code>start</code>，想要在命令行中运行时，需要这样用<code>npm run {script name}</code>如<code>npm run build</code>，我们在命令行中输入<code>npm start</code>试试，输出结果如下：</p>
+<div class="image-package">
+<div class="image-container" style="max-width: 700px; max-height: 474px;">
+<div class="image-container-fill" style="padding-bottom: 56.28999999999999%;"></div>
+<div class="image-view" data-width="842" data-height="474"><img data-original-src="//upload-images.jianshu.io/upload_images/1031000-a3e10146ffac4163.png" data-original-width="842" data-original-height="474" data-original-format="image/png" data-original-filesize="80946" style="cursor: zoom-in;" class="image-loading"></div>
+</div>
+<div class="image-caption">使用npm start 打包代码</div>
+</div>
+<p>现在只需要使用<code>npm start</code>就可以打包文件了，有没有觉得<code>webpack</code>也不过如此嘛，不过不要太小瞧<code>webpack</code>，要充分发挥其强大的功能我们需要修改配置文件的其它选项，一项项来看。</p>
+<h3>Webpack的强大功能</h3>
+<h4>生成Source Maps（使调试更容易）</h4>
+<p>开发总是离不开调试，方便的调试能极大的提高开发效率，不过有时候通过打包后的文件，你是不容易找到出错了的地方，对应的你写的代码的位置的，<code>Source Maps</code>就是来帮我们解决这个问题的。</p>
+<p>通过简单的配置，<code>webpack</code>就可以在打包时为我们生成的<code>source maps</code>，这为我们提供了一种对应编译文件和源文件的方法，使得编译后的代码可读性更高，也更容易调试。</p>
+<p>在<code>webpack</code>的配置文件中配置<code>source maps</code>，需要配置<code>devtool</code>，它有以下四种不同的配置选项，各具优缺点，描述如下：</p>
+<table>
+<thead>
+<tr>
+<th>devtool选项</th>
+<th>配置结果</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>source-map</code></td>
+<td>在一个单独的文件中产生一个完整且功能完全的文件。这个文件具有最好的<code>source map</code>，但是它会减慢打包速度；</td>
+</tr>
+<tr>
+<td><code>cheap-module-source-map</code></td>
+<td>在一个单独的文件中生成一个不带列映射的<code>map</code>，不带列映射提高了打包速度，但是也使得浏览器开发者工具只能对应到具体的行，不能对应到具体的列（符号），会对调试造成不便；</td>
+</tr>
+<tr>
+<td><code>eval-source-map</code></td>
+<td>使用<code>eval</code>打包源文件模块，在同一个文件中生成干净的完整的<code>source map</code>。这个选项可以在不影响构建速度的前提下生成完整的<code>sourcemap</code>，但是对打包后输出的JS文件的执行具有性能和安全的隐患。在开发阶段这是一个非常好的选项，在生产阶段则一定不要启用这个选项；</td>
+</tr>
+<tr>
+<td><code>cheap-module-eval-source-map</code></td>
+<td>这是在打包文件时最快的生成<code>source map</code>的方法，生成的<code>Source Map</code> 会和打包后的<code>JavaScript</code>文件同行显示，没有列映射，和<code>eval-source-map</code>选项具有相似的缺点；</td>
+</tr>
+</tbody>
+</table>
+<p>正如上表所述，上述选项由上到下打包速度越来越快，不过同时也具有越来越多的负面作用，较快的打包速度的后果就是对打包后的文件的的执行有一定影响。</p>
+<p>对小到中型的项目中，<code>eval-source-map</code>是一个很好的选项，再次强调你只应该开发阶段使用它，我们继续对上文新建的<code>webpack.config.js</code>，进行如下配置:</p>
+<pre class="hljs undefined"><code class="js">module.exports = {
+  devtool: 'eval-source-map',
+  entry:  __dirname + "/app/main.js",
+  output: {
+    path: __dirname + "/public",
+    filename: "bundle.js"
+  }
+}
+</code></pre>
+<blockquote>
+<p><code>cheap-module-eval-source-map</code>方法构建速度更快，但是不利于调试，推荐在大型项目考虑时间成本时使用。</p>
+</blockquote>
+<h4>使用webpack构建本地服务器</h4>
+<p>想不想让你的浏览器监听你的代码的修改，并自动刷新显示修改后的结果，其实<code>Webpack</code>提供一个可选的本地开发服务器，这个本地服务器基于node.js构建，可以实现你想要的这些功能，不过它是一个单独的组件，在webpack中进行配置之前需要单独安装它作为项目依赖</p>
+<pre class="hljs bash"><code class="bash">npm install --save-dev webpack-dev-server
+</code></pre>
+<p>devserver作为webpack配置选项中的一项，以下是它的一些配置选项，更多配置可参考<a href="https://link.jianshu.com/?t=https://webpack.js.org/configuration/dev-server/" target="_blank" rel="nofollow">这里</a></p>
+<table>
+<thead>
+<tr>
+<th>devserver的配置选项</th>
+<th>功能描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>contentBase</td>
+<td>默认webpack-dev-server会为根文件夹提供本地服务器，如果想为另外一个目录下的文件提供本地服务器，应该在这里设置其所在目录（本例设置到“public"目录）</td>
+</tr>
+<tr>
+<td>port</td>
+<td>设置默认监听端口，如果省略，默认为”8080“</td>
+</tr>
+<tr>
+<td>inline</td>
+<td>设置为<code>true</code>，当源文件改变时会自动刷新页面</td>
+</tr>
+<tr>
+<td>historyApiFallback</td>
+<td>在开发单页应用时非常有用，它依赖于HTML5 history API，如果设置为<code>true</code>，所有的跳转将指向index.html</td>
+</tr>
+</tbody>
+</table>
+<p>把这些命令加到webpack的配置文件中，现在的配置文件<code>webpack.config.js</code>如下所示</p>
+<pre class="hljs undefined"><code class="js">module.exports = {
+  devtool: 'eval-source-map',
+
+  entry:  __dirname + "/app/main.js",
+  output: {
+    path: __dirname + "/public",
+    filename: "bundle.js"
+  },
+
+  devServer: {
+    contentBase: "./public",//本地服务器所加载的页面所在的目录
+    historyApiFallback: true,//不跳转
+    inline: true//实时刷新
+  } 
+}
+</code></pre>
+<p>在<code>package.json</code>中的<code>scripts</code>对象中添加如下命令，用以开启本地服务器：</p>
+<pre class="hljs json"><code class="json">  <span class="hljs-string">"scripts"</span>: {
+    <span class="hljs-attr">"test"</span>: <span class="hljs-string">"echo \"Error: no test specified\" &amp;&amp; exit 1"</span>,
+    <span class="hljs-attr">"start"</span>: <span class="hljs-string">"webpack"</span>,
+    <span class="hljs-attr">"server"</span>: <span class="hljs-string">"webpack-dev-server --open"</span>
+  },
+</code></pre>
+<p>在终端中输入<code>npm run server</code>即可在本地的<code>8080</code>端口查看结果</p>
+<div class="image-package">
+<div class="image-container" style="max-width: 700px; max-height: 553px;">
+<div class="image-container-fill" style="padding-bottom: 79.06%;"></div>
+<div class="image-view" data-width="898" data-height="710"><img data-original-src="//upload-images.jianshu.io/upload_images/1031000-47d5bea9ef177187.png" data-original-width="898" data-original-height="710" data-original-format="image/png" data-original-filesize="159182" style="cursor: zoom-in;" class="image-loading"></div>
+</div>
+<div class="image-caption">开启本地服务器</div>
+</div>
+<h4>Loaders</h4>
+<p><strong>鼎鼎大名的Loaders登场了！</strong></p>
+<p><code>Loaders</code>是<code>webpack</code>提供的最激动人心的功能之一了。通过使用不同的<code>loader</code>，<code>webpack</code>有能力调用外部的脚本或工具，实现对不同格式的文件的处理，比如说分析转换scss为css，或者把下一代的JS文件（ES6，ES7)转换为现代浏览器兼容的JS文件，对React的开发而言，合适的Loaders可以把React的中用到的JSX文件转换为JS文件。</p>
+<p>Loaders需要单独安装并且需要在<code>webpack.config.js</code>中的<code>modules</code>关键字下进行配置，Loaders的配置包括以下几方面：</p>
+<ul>
+<li>
+<code>test</code>：一个用以匹配loaders所处理文件的拓展名的正则表达式（必须）</li>
+<li>
+<code>loader</code>：loader的名称（必须）</li>
+<li>
+<code>include/exclude</code>:手动添加必须处理的文件（文件夹）或屏蔽不需要处理的文件（文件夹）（可选）；</li>
+<li>
+<code>query</code>：为loaders提供额外的设置选项（可选）</li>
+</ul>
+<p>不过在配置loader之前，我们把<code>Greeter.js</code>里的问候消息放在一个单独的JSON文件里,并通过合适的配置使<code>Greeter.js</code>可以读取该JSON文件的值，各文件修改后的代码如下：</p>
+<p>在app文件夹中创建带有问候信息的JSON文件(命名为<code>config.json</code>)</p>
+<pre class="hljs json"><code class="json">{
+  <span class="hljs-attr">"greetText"</span>: <span class="hljs-string">"Hi there and greetings from JSON!"</span>
+}
+</code></pre>
+<p>更新后的Greeter.js</p>
+<pre class="hljs undefined"><code class="js">var config = require('./config.json');
+
+module.exports = function() {
+  var greet = document.createElement('div');
+  greet.textContent = config.greetText;
+  return greet;
+};
+</code></pre>
+<blockquote>
+<p><strong>注</strong> 由于<code>webpack3.*/webpack2.*</code>已经内置可处理JSON文件，这里我们无需再添加<code>webpack1.*</code>需要的<code>json-loader</code>。在看如何具体使用loader之前我们先看看Babel是什么？</p>
+</blockquote>
+<h3>Babel</h3>
+<p>Babel其实是一个编译JavaScript的平台，它可以编译代码帮你达到以下目的：</p>
+<ul>
+<li>让你能使用最新的JavaScript代码（ES6，ES7...），而不用管新标准是否被当前使用的浏览器完全支持；</li>
+<li>让你能使用基于JavaScript进行了拓展的语言，比如React的JSX；</li>
+</ul>
+<h4>Babel的安装与配置</h4>
+<p>Babel其实是几个模块化的包，其核心功能位于称为<code>babel-core</code>的npm包中，webpack可以把其不同的包整合在一起使用，对于每一个你需要的功能或拓展，你都需要安装单独的包（用得最多的是解析Es6的<code>babel-env-preset</code>包和解析JSX的<code>babel-preset-react</code>包）。</p>
+<p>我们先来一次性安装这些依赖包</p>
+<pre class="hljs bash"><code class="bash">// npm一次性安装多个依赖模块，模块之间用空格隔开
+npm install --save-dev babel-core babel-loader babel-preset-env babel-preset-react
+</code></pre>
+<p>在<code>webpack</code>中配置Babel的方法如下:</p>
+<pre class="hljs undefined"><code class="js">module.exports = {
+    entry: __dirname + "/app/main.js",//已多次提及的唯一入口文件
+    output: {
+        path: __dirname + "/public",//打包后的文件存放的地方
+        filename: "bundle.js"//打包后输出文件的文件名
+    },
+    devtool: 'eval-source-map',
+    devServer: {
+        contentBase: "./public",//本地服务器所加载的页面所在的目录
+        historyApiFallback: true,//不跳转
+        inline: true//实时刷新
+    },
+    module: {
+        rules: [
+            {
+                test: /(\.jsx|\.js)$/,
+                use: {
+                    loader: "babel-loader",
+                    options: {
+                        presets: [
+                            "env", "react"
+                        ]
+                    }
+                },
+                exclude: /node_modules/
+            }
+        ]
+    }
+};
+</code></pre>
+<p>现在你的webpack的配置已经允许你使用ES6以及JSX的语法了。继续用上面的例子进行测试，不过这次我们会使用React，记得先安装 React 和 React-DOM</p>
+<pre class="hljs bash"><code class="bash">npm install --save react react-dom
+</code></pre>
+<p>接下来我们使用ES6的语法，更新<code>Greeter.js</code>并返回一个React组件</p>
+<pre class="hljs undefined"><code class="js">//Greeter,js
+import React, {Component} from 'react'
+import config from './config.json';
+
+class Greeter extends Component{
+  render() {
+    return (
+      &lt;div&gt;
+        {config.greetText}
+      &lt;/div&gt;
+    );
+  }
+}
+
+export default Greeter
+</code></pre>
+<p>修改<code>main.js</code>如下，使用ES6的模块定义和渲染Greeter模块</p>
+<pre class="hljs undefined"><code class="js">// main.js
+import React from 'react';
+import {render} from 'react-dom';
+import Greeter from './Greeter';
+
+render(&lt;Greeter /&gt;, document.getElementById('root'));
+</code></pre>
+<p>重新使用<code>npm start</code>打包，如果之前打开的本地服务器没有关闭，你应该可以在<code>localhost:8080</code>下看到与之前一样的内容，这说明<code>react</code>和<code>es6</code>被正常打包了。</p>
+<div class="image-package">
+<div class="image-container" style="max-width: 278px; max-height: 108px;">
+<div class="image-container-fill" style="padding-bottom: 38.85%;"></div>
+<div class="image-view" data-width="278" data-height="108"><img data-original-src="//upload-images.jianshu.io/upload_images/1031000-7d2a7769709a2e36.png" data-original-width="278" data-original-height="108" data-original-format="image/png" data-original-filesize="13704" style="cursor: zoom-in;" class="image-loading"></div>
+</div>
+<div class="image-caption">localhost:8080</div>
+</div>
+<h4>Babel的配置</h4>
+<p>Babel其实可以完全在 <code>webpack.config.js</code> 中进行配置，但是考虑到babel具有非常多的配置选项，在单一的<code>webpack.config.js</code>文件中进行配置往往使得这个文件显得太复杂，因此一些开发者支持把babel的配置选项放在一个单独的名为 ".babelrc" 的配置文件中。我们现在的babel的配置并不算复杂，不过之后我们会再加一些东西，因此现在我们就提取出相关部分，分两个配置文件进行配置（webpack会自动调用<code>.babelrc</code>里的babel配置选项），如下：</p>
+<pre class="hljs undefined"><code class="js">module.exports = {
+    entry: __dirname + "/app/main.js",//已多次提及的唯一入口文件
+    output: {
+        path: __dirname + "/public",//打包后的文件存放的地方
+        filename: "bundle.js"//打包后输出文件的文件名
+    },
+    devtool: 'eval-source-map',
+    devServer: {
+        contentBase: "./public",//本地服务器所加载的页面所在的目录
+        historyApiFallback: true,//不跳转
+        inline: true//实时刷新
+    },
+    module: {
+        rules: [
+            {
+                test: /(\.jsx|\.js)$/,
+                use: {
+                    loader: "babel-loader"
+                },
+                exclude: /node_modules/
+            }
+        ]
+    }
+};
+
+</code></pre>
+<pre class="hljs undefined"><code class="js">//.babelrc
+{
+  "presets": ["react", "env"]
+}
+</code></pre>
+<p>到目前为止，我们已经知道了，对于模块，Webpack能提供非常强大的处理功能，那那些是模块呢。</p>
+<h3>一切皆模块</h3>
+<p>Webpack有一个不可不说的优点，它把所有的文件都都当做模块处理，JavaScript代码，CSS和fonts以及图片等等通过合适的loader都可以被处理。</p>
+<h4>CSS</h4>
+<p>webpack提供两个工具处理样式表，<code>css-loader</code> 和 <code>style-loader</code>，二者处理的任务不同，<code>css-loader</code>使你能够使用类似<code>@import</code> 和 <code>url(...)</code>的方法实现 <code>require()</code>的功能,<code>style-loader</code>将所有的计算后的样式加入页面中，二者组合在一起使你能够把样式表嵌入webpack打包后的JS文件中。</p>
+<p>继续上面的例子</p>
+<pre class="hljs bash"><code class="bash">//安装
+npm install --save-dev style-loader css-loader
+</code></pre>
+<pre class="hljs undefined"><code class="js">//使用
+module.exports = {
+
+   ...
+    module: {
+        rules: [
+            {
+                test: /(\.jsx|\.js)$/,
+                use: {
+                    loader: "babel-loader"
+                },
+                exclude: /node_modules/
+            },
+            {
+                test: /\.css$/,
+                use: [
+                    {
+                        loader: "style-loader"
+                    }, {
+                        loader: "css-loader"
+                    }
+                ]
+            }
+        ]
+    }
+};
+</code></pre>
+<blockquote>
+<p>请注意这里对同一个文件引入多个loader的方法。</p>
+</blockquote>
+<p>接下来，在app文件夹里创建一个名字为"main.css"的文件，对一些元素设置样式</p>
+<pre class="hljs css"><code class="css"><span class="hljs-comment">/* main.css */</span>
+<span class="hljs-selector-tag">html</span> {
+  <span class="hljs-attribute">box-sizing</span>: border-box;
+  <span class="hljs-attribute">-ms-text-size-adjust</span>: <span class="hljs-number">100%</span>;
+  <span class="hljs-attribute">-webkit-text-size-adjust</span>: <span class="hljs-number">100%</span>;
+}
+
+*, *<span class="hljs-selector-pseudo">:before</span>, *<span class="hljs-selector-pseudo">:after</span> {
+  <span class="hljs-attribute">box-sizing</span>: inherit;
+}
+
+<span class="hljs-selector-tag">body</span> {
+  <span class="hljs-attribute">margin</span>: <span class="hljs-number">0</span>;
+  <span class="hljs-attribute">font-family</span>: <span class="hljs-string">'Helvetica Neue'</span>, Helvetica, Arial, sans-serif;
+}
+
+<span class="hljs-selector-tag">h1</span>, <span class="hljs-selector-tag">h2</span>, <span class="hljs-selector-tag">h3</span>, <span class="hljs-selector-tag">h4</span>, <span class="hljs-selector-tag">h5</span>, <span class="hljs-selector-tag">h6</span>, <span class="hljs-selector-tag">p</span>, <span class="hljs-selector-tag">ul</span> {
+  <span class="hljs-attribute">margin</span>: <span class="hljs-number">0</span>;
+  <span class="hljs-attribute">padding</span>: <span class="hljs-number">0</span>;
+}
+</code></pre>
+<p>我们这里例子中用到的<code>webpack</code>只有单一的入口，其它的模块需要通过 <code>import</code>, <code>require</code>, <code>url</code>等与入口文件建立其关联，为了让webpack能找到”main.css“文件，我们把它导入”main.js “中，如下</p>
+<pre class="hljs undefined"><code class="js">//main.js
+import React from 'react';
+import {render} from 'react-dom';
+import Greeter from './Greeter';
+
+import './main.css';//使用require导入css文件
+
+render(&lt;Greeter /&gt;, document.getElementById('root'));
+</code></pre>
+<blockquote>
+<p>通常情况下，css会和js打包到同一个文件中，并不会打包为一个单独的css文件，不过通过合适的配置webpack也可以把css打包为单独的文件的。</p>
+</blockquote>
+<p>上面的代码说明webpack是怎么把css当做模块看待的，咱们继续看一个更加真实的css模块实践。</p>
+<h4>CSS module</h4>
+<p>在过去的一些年里，JavaScript通过一些新的语言特性，更好的工具以及更好的实践方法（比如说模块化）发展得非常迅速。模块使得开发者把复杂的代码转化为小的，干净的，依赖声明明确的单元，配合优化工具，依赖管理和加载管理可以自动完成。</p>
+<p>不过前端的另外一部分，CSS发展就相对慢一些，大多的样式表却依旧巨大且充满了全局类名，维护和修改都非常困难。</p>
+<p>被称为<code>CSS modules</code>的技术意在把JS的模块化思想带入CSS中来，通过CSS模块，所有的类名，动画名默认都只作用于当前模块。Webpack对CSS模块化提供了非常好的支持，只需要在CSS loader中进行简单配置即可，然后就可以直接把CSS的类名传递到组件的代码中，这样做有效避免了全局污染。具体的代码如下</p>
+<pre class="hljs undefined"><code class="js">module.exports = {
+
+    ...
+
+    module: {
+        rules: [
+            {
+                test: /(\.jsx|\.js)$/,
+                use: {
+                    loader: "babel-loader"
+                },
+                exclude: /node_modules/
+            },
+            {
+                test: /\.css$/,
+                use: [
+                    {
+                        loader: "style-loader"
+                    }, {
+                        loader: "css-loader",
+                        options: {
+                            modules: true, // 指定启用css modules
+                            localIdentName: '[name]__[local]--[hash:base64:5]' // 指定css的类名格式
+                        }
+                    }
+                ]
+            }
+        ]
+    }
+};
+</code></pre>
+<p>我们在app文件夹下创建一个<code>Greeter.css</code>文件来进行一下测试</p>
+<pre class="hljs undefined"><code>/* Greeter.css */
+.root {
+  background-color: #eee;
+  padding: 10px;
+  border: 3px solid #ccc;
+}
+</code></pre>
+<p>导入<code>.root</code>到Greeter.js中</p>
+<pre class="hljs undefined"><code class="js">import React, {Component} from 'react';
+import config from './config.json';
+import styles from './Greeter.css';//导入
+
+class Greeter extends Component{
+  render() {
+    return (
+      &lt;div className={styles.root}&gt; //使用cssModule添加类名的方法
+        {config.greetText}
+      &lt;/div&gt;
+    );
+  }
+}
+
+export default Greeter
+</code></pre>
+<p>放心使用把，相同的类名也不会造成不同组件之间的污染。</p>
+<div class="image-package">
+<div class="image-container" style="max-width: 700px; max-height: 150px;">
+<div class="image-container-fill" style="padding-bottom: 18.990000000000002%;"></div>
+<div class="image-view" data-width="790" data-height="150"><img data-original-src="//upload-images.jianshu.io/upload_images/1031000-61f802a003991423.png" data-original-width="790" data-original-height="150" data-original-format="image/png" data-original-filesize="36871" style="cursor: zoom-in;" class="image-loading"></div>
+</div>
+<div class="image-caption">应用了css module后的样式</div>
+</div>
+<p>CSS modules 也是一个很大的主题，有兴趣的话可以去其<a href="https://link.jianshu.com/?t=https://github.com/css-modules/css-modules" target="_blank" rel="nofollow">官方文档</a>了解更多。</p>
+<h4>CSS预处理器</h4>
+<p><code>Sass</code> 和 <code>Less</code> 之类的预处理器是对原生CSS的拓展，它们允许你使用类似于<code>variables</code>, <code>nesting</code>, <code>mixins</code>, <code>inheritance</code>等不存在于CSS中的特性来写CSS，CSS预处理器可以这些特殊类型的语句转化为浏览器可识别的CSS语句，</p>
+<p>你现在可能都已经熟悉了，在webpack里使用相关loaders进行配置就可以使用了，以下是常用的CSS 处理<code>loaders</code>:</p>
+<ul>
+<li><code>Less Loader</code></li>
+<li><code>Sass Loader</code></li>
+<li><code>Stylus Loader</code></li>
+</ul>
+<p>不过其实也存在一个CSS的处理平台<code>-PostCSS</code>，它可以帮助你的CSS实现更多的功能，在其<a href="https://link.jianshu.com/?t=https://github.com/postcss/postcss" target="_blank" rel="nofollow">官方文档</a>可了解更多相关知识。</p>
+<p>举例来说如何使用PostCSS，我们使用PostCSS来为CSS代码自动添加适应不同浏览器的CSS前缀。</p>
+<p>首先安装<code>postcss-loader</code> 和 <code>autoprefixer</code>（自动添加前缀的插件）</p>
+<pre class="hljs undefined"><code>npm install --save-dev postcss-loader autoprefixer
+</code></pre>
+<p>接下来，在webpack配置文件中添加<code>postcss-loader</code>，在根目录新建<code>postcss.config.js</code>,并添加如下代码之后，重新使用<code>npm start</code>打包时，你写的css会自动根据Can i use里的数据添加不同前缀了。</p>
+<pre class="hljs undefined"><code class="js">//webpack.config.js
+module.exports = {
+    ...
+    module: {
+        rules: [
+            {
+                test: /(\.jsx|\.js)$/,
+                use: {
+                    loader: "babel-loader"
+                },
+                exclude: /node_modules/
+            },
+            {
+                test: /\.css$/,
+                use: [
+                    {
+                        loader: "style-loader"
+                    }, {
+                        loader: "css-loader",
+                        options: {
+                            modules: true
+                        }
+                    }, {
+                        loader: "postcss-loader"
+                    }
+                ]
+            }
+        ]
+    }
+}
+</code></pre>
+<pre class="hljs undefined"><code class="js">// postcss.config.js
+module.exports = {
+    plugins: [
+        require('autoprefixer')
+    ]
+}
+</code></pre>
+<p>至此，本文已经谈论了处理JS的Babel和处理CSS的PostCSS的基本用法，它们其实也是两个单独的平台，配合<code>webpack</code>可以很好的发挥它们的作用。接下来介绍Webpack中另一个非常重要的功能-<code>Plugins</code></p>
+<h3>插件（Plugins）</h3>
+<p>插件（Plugins）是用来拓展Webpack功能的，它们会在整个构建过程中生效，执行相关的任务。<br>
+Loaders和Plugins常常被弄混，但是他们其实是完全不同的东西，可以这么来说，loaders是在打包构建过程中用来处理源文件的（JSX，Scss，Less..），一次处理一个，插件并不直接操作单个文件，它直接对整个构建过程其作用。</p>
+<p>Webpack有很多内置插件，同时也有很多第三方插件，可以让我们完成更加丰富的功能。</p>
+<h4>使用插件的方法</h4>
+<p>要使用某个插件，我们需要通过<code>npm</code>安装它，然后要做的就是在webpack配置中的plugins关键字部分添加该插件的一个实例（plugins是一个数组）继续上面的例子，我们添加了一个给打包后代码<a href="https://link.jianshu.com/?t=https://webpack.js.org/plugins/banner-plugin/" target="_blank" rel="nofollow">添加版权声明的插件</a>。</p>
+<pre class="hljs undefined"><code class="js">const webpack = require('webpack');
+
+module.exports = {
+...
+    module: {
+        rules: [
+            {
+                test: /(\.jsx|\.js)$/,
+                use: {
+                    loader: "babel-loader"
+                },
+                exclude: /node_modules/
+            },
+            {
+                test: /\.css$/,
+                use: [
+                    {
+                        loader: "style-loader"
+                    }, {
+                        loader: "css-loader",
+                        options: {
+                            modules: true
+                        }
+                    }, {
+                        loader: "postcss-loader"
+                    }
+                ]
+            }
+        ]
+    },
+    plugins: [
+        new webpack.BannerPlugin('版权所有，翻版必究')
+    ],
+};
+</code></pre>
+<p>通过这个插件，打包后的JS文件显示如下</p>
+<div class="image-package">
+<div class="image-container" style="max-width: 462px; max-height: 102px;">
+<div class="image-container-fill" style="padding-bottom: 22.08%;"></div>
+<div class="image-view" data-width="462" data-height="102"><img data-original-src="//upload-images.jianshu.io/upload_images/1031000-9d190ecceaeb9e0e.png" data-original-width="462" data-original-height="102" data-original-format="image/png" data-original-filesize="18093" style="cursor: zoom-in;" class="image-loading"></div>
+</div>
+<div class="image-caption">版权所有，翻版必究</div>
+</div>
+<p>这就是webpack插件的基础用法了，下面给大家推荐几个常用的插件</p>
+<h4>HtmlWebpackPlugin</h4>
+<p>这个插件的作用是依据一个简单的<code>index.html</code>模板，生成一个自动引用你打包后的JS文件的新<code>index.html</code>。这在每次生成的js文件名称不同时非常有用（比如添加了<code>hash</code>值）。</p>
+<p><strong>安装</strong></p>
+<pre class="hljs bash"><code class="bash">npm install --save-dev html-webpack-plugin
+</code></pre>
+<p>这个插件自动完成了我们之前手动做的一些事情，在正式使用之前需要对一直以来的项目结构做一些更改：</p>
+<ol>
+<li>移除public文件夹，利用此插件，<code>index.html</code>文件会自动生成，此外CSS已经通过前面的操作打包到JS中了。</li>
+<li>在app目录下，创建一个<code>index.tmpl.html</code>文件模板，这个模板包含<code>title</code>等必须元素，在编译过程中，插件会依据此模板生成最终的html页面，会自动添加所依赖的 css, js，favicon等文件，<code>index.tmpl.html</code>中的模板源代码如下：</li>
+</ol>
+<pre class="hljs undefined"><code class="html">&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+  &lt;head&gt;
+    &lt;meta charset="utf-8"&gt;
+    &lt;title&gt;Webpack Sample Project&lt;/title&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;div id='root'&gt;
+    &lt;/div&gt;
+  &lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p>3.更新<code>webpack</code>的配置文件，方法同上,新建一个<code>build</code>文件夹用来存放最终的输出文件</p>
+<pre class="hljs undefined"><code class="js">const webpack = require('webpack');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+
+module.exports = {
+    entry: __dirname + "/app/main.js",//已多次提及的唯一入口文件
+    output: {
+        path: __dirname + "/build",
+        filename: "bundle.js"
+    },
+    devtool: 'eval-source-map',
+    devServer: {
+        contentBase: "./public",//本地服务器所加载的页面所在的目录
+        historyApiFallback: true,//不跳转
+        inline: true//实时刷新
+    },
+    module: {
+        rules: [
+            {
+                test: /(\.jsx|\.js)$/,
+                use: {
+                    loader: "babel-loader"
+                },
+                exclude: /node_modules/
+            },
+            {
+                test: /\.css$/,
+                use: [
+                    {
+                        loader: "style-loader"
+                    }, {
+                        loader: "css-loader",
+                        options: {
+                            modules: true
+                        }
+                    }, {
+                        loader: "postcss-loader"
+                    }
+                ]
+            }
+        ]
+    },
+    plugins: [
+        new webpack.BannerPlugin('版权所有，翻版必究'),
+        new HtmlWebpackPlugin({
+            template: __dirname + "/app/index.tmpl.html"//new 一个这个插件的实例，并传入相关的参数
+        })
+    ],
+};
+</code></pre>
+<p>再次执行<code>npm start</code>你会发现，build文件夹下面生成了<code>bundle.js</code>和<code>index.html</code>。</p>
+<div class="image-package">
+<div class="image-container" style="max-width: 510px; max-height: 294px;">
+<div class="image-container-fill" style="padding-bottom: 57.65%;"></div>
+<div class="image-view" data-width="510" data-height="294"><img data-original-src="//upload-images.jianshu.io/upload_images/1031000-0e13dc8a49d9cda5.png" data-original-width="510" data-original-height="294" data-original-format="image/png" data-original-filesize="19719" style="cursor: zoom-in;" class="image-loading"></div>
+</div>
+<div class="image-caption">build文件夹</div>
+</div>
+<h4>Hot Module Replacement</h4>
+<p><code>Hot Module Replacement</code>（HMR）也是webpack里很有用的一个插件，它允许你在修改组件代码后，自动刷新实时预览修改后的效果。</p>
+<p>在webpack中实现HMR也很简单，只需要做两项配置</p>
+<ol>
+<li>在webpack配置文件中添加HMR插件；</li>
+<li>在Webpack Dev Server中添加“hot”参数；</li>
+</ol>
+<p>不过配置完这些后，JS模块其实还是不能自动热加载的，还需要在你的JS模块中执行一个Webpack提供的API才能实现热加载，虽然这个API不难使用，但是如果是React模块，使用我们已经熟悉的Babel可以更方便的实现功能热加载。</p>
+<p>整理下我们的思路，具体实现方法如下</p>
+<ul>
+<li>
+<code>Babel</code>和<code>webpack</code>是独立的工具</li>
+<li>二者可以一起工作</li>
+<li>二者都可以通过插件拓展功能</li>
+<li>HMR是一个webpack插件，它让你能浏览器中实时观察模块修改后的效果，但是如果你想让它工作，需要对模块进行额外的配额；</li>
+<li>Babel有一个叫做<code>react-transform-hrm</code>的插件，可以在不对React模块进行额外的配置的前提下让HMR正常工作；</li>
+</ul>
+<p>还是继续上例来实际看看如何配置</p>
+<pre class="hljs undefined"><code class="js">const webpack = require('webpack');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+
+module.exports = {
+    entry: __dirname + "/app/main.js",//已多次提及的唯一入口文件
+    output: {
+        path: __dirname + "/build",
+        filename: "bundle.js"
+    },
+    devtool: 'eval-source-map',
+    devServer: {
+        contentBase: "./public",//本地服务器所加载的页面所在的目录
+        historyApiFallback: true,//不跳转
+        inline: true,
+        hot: true
+    },
+    module: {
+        rules: [
+            {
+                test: /(\.jsx|\.js)$/,
+                use: {
+                    loader: "babel-loader"
+                },
+                exclude: /node_modules/
+            },
+            {
+                test: /\.css$/,
+                use: [
+                    {
+                        loader: "style-loader"
+                    }, {
+                        loader: "css-loader",
+                        options: {
+                            modules: true
+                        }
+                    }, {
+                        loader: "postcss-loader"
+                    }
+                ]
+            }
+        ]
+    },
+    plugins: [
+        new webpack.BannerPlugin('版权所有，翻版必究'),
+        new HtmlWebpackPlugin({
+            template: __dirname + "/app/index.tmpl.html"//new 一个这个插件的实例，并传入相关的参数
+        }),
+        new webpack.HotModuleReplacementPlugin()//热加载插件
+    ],
+};
+   
+</code></pre>
+<p>安装<code>react-transform-hmr</code></p>
+<pre class="hljs bash"><code class="bash">npm install --save-dev babel-plugin-react-transform react-transform-hmr
+</code></pre>
+<p>配置Babel</p>
+<pre class="hljs undefined"><code class="js">// .babelrc
+{
+  "presets": ["react", "env"],
+  "env": {
+    "development": {
+    "plugins": [["react-transform", {
+       "transforms": [{
+         "transform": "react-transform-hmr",
+         
+         "imports": ["react"],
+         
+         "locals": ["module"]
+       }]
+     }]]
+    }
+  }
+}
+</code></pre>
+<p>现在当你使用React时，可以热加载模块了,每次保存就能在浏览器上看到更新内容。</p>
+<h3>产品阶段的构建</h3>
+<p>目前为止，我们已经使用webpack构建了一个完整的开发环境。但是在产品阶段，可能还需要对打包的文件进行额外的处理，比如说优化，压缩，缓存以及分离CSS和JS。</p>
+<p>对于复杂的项目来说，需要复杂的配置，这时候分解配置文件为多个小的文件可以使得事情井井有条，以上面的例子来说，我们创建一个<code>webpack.production.config.js</code>的文件，在里面加上基本的配置,它和原始的webpack.config.js很像，如下</p>
+<pre class="hljs undefined"><code class="js">// webpack.production.config.js
+const webpack = require('webpack');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+
+module.exports = {
+    entry: __dirname + "/app/main.js", //已多次提及的唯一入口文件
+    output: {
+        path: __dirname + "/build",
+        filename: "bundle.js"
+    },
+    devtool: 'null', //注意修改了这里，这能大大压缩我们的打包代码
+    devServer: {
+        contentBase: "./public", //本地服务器所加载的页面所在的目录
+        historyApiFallback: true, //不跳转
+        inline: true,
+        hot: true
+    },
+    module: {
+        rules: [{
+            test: /(\.jsx|\.js)$/,
+            use: {
+                loader: "babel-loader"
+            },
+            exclude: /node_modules/
+        }, {
+            test: /\.css$/,
+            use: ExtractTextPlugin.extract({
+                fallback: "style-loader",
+                use: [{
+                    loader: "css-loader",
+                    options: {
+                        modules: true
+                    }
+                }, {
+                    loader: "postcss-loader"
+                }],
+            })
+        }]
+    },
+    plugins: [
+        new webpack.BannerPlugin('版权所有，翻版必究'),
+        new HtmlWebpackPlugin({
+            template: __dirname + "/app/index.tmpl.html" //new 一个这个插件的实例，并传入相关的参数
+        }),
+        new webpack.HotModuleReplacementPlugin() //热加载插件
+    ],
+};
+</code></pre>
+<pre class="hljs undefined"><code class="js">//package.json
+{
+  "name": "test",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" &amp;&amp; exit 1",
+    "start": "webpack",
+    "server": "webpack-dev-server --open",
+    "build": "NODE_ENV=production webpack --config ./webpack.production.config.js --progress"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+...
+  },
+  "dependencies": {
+    "react": "^15.6.1",
+    "react-dom": "^15.6.1"
+  }
+}
+</code></pre>
+<blockquote>
+<p><strong>注意:</strong>如果是window电脑，<code>build</code>需要配置为<code>"build": "set NODE_ENV=production &amp;&amp; webpack --config ./webpack.production.config.js --progress"</code>.谢谢评论区简友提醒。</p>
+</blockquote>
+<h4>优化插件</h4>
+<p>webpack提供了一些在发布阶段非常有用的优化插件，它们大多来自于webpack社区，可以通过npm安装，通过以下插件可以完成产品发布阶段所需的功能</p>
+<ul>
+<li>
+<code>OccurenceOrderPlugin</code> :为组件分配ID，通过这个插件webpack可以分析和优先考虑使用最多的模块，并为它们分配最小的ID</li>
+<li>
+<code>UglifyJsPlugin</code>：压缩JS代码；</li>
+<li>
+<code>ExtractTextPlugin</code>：分离CSS和JS文件</li>
+</ul>
+<p>我们继续用例子来看看如何添加它们，OccurenceOrder 和 UglifyJS plugins 都是内置插件，你需要做的只是安装其它非内置插件</p>
+<pre class="hljs bash"><code class="bash">npm install --save-dev extract-text-webpack-plugin
+</code></pre>
+<p>在配置文件的plugins后引用它们</p>
+<pre class="hljs undefined"><code class="js">// webpack.production.config.js
+const webpack = require('webpack');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
+
+module.exports = {
+    entry: __dirname + "/app/main.js",//已多次提及的唯一入口文件
+    output: {
+        path: __dirname + "/build",
+        filename: "bundle.js"
+    },
+    devtool: 'none',
+    devServer: {
+        contentBase: "./public",//本地服务器所加载的页面所在的目录
+        historyApiFallback: true,//不跳转
+        inline: true,
+        hot: true
+    },
+    module: {
+        rules: [
+            {
+                test: /(\.jsx|\.js)$/,
+                use: {
+                    loader: "babel-loader"
+                },
+                exclude: /node_modules/
+            },
+            {
+                test: /\.css$/,
+                use: [
+                    {
+                        loader: "style-loader"
+                    }, {
+                        loader: "css-loader",
+                        options: {
+                            modules: true
+                        }
+                    }, {
+                        loader: "postcss-loader"
+                    }
+                ]
+            }
+        ]
+    },
+    plugins: [
+        new webpack.BannerPlugin('版权所有，翻版必究'),
+        new HtmlWebpackPlugin({
+            template: __dirname + "/app/index.tmpl.html"
+        }),
+        new webpack.optimize.OccurrenceOrderPlugin(),
+        new webpack.optimize.UglifyJsPlugin(),
+        new ExtractTextPlugin("style.css")
+    ],
+};
+</code></pre>
+<p>此时执行<code>npm run build</code>可以看见代码是被压缩后的</p>
+<div class="image-package">
+<div class="image-container" style="max-width: 700px; max-height: 492px;">
+<div class="image-container-fill" style="padding-bottom: 38.440000000000005%;"></div>
+<div class="image-view" data-width="1280" data-height="492"><img data-original-src="//upload-images.jianshu.io/upload_images/1031000-f9b89ce486539162.png" data-original-width="1280" data-original-height="492" data-original-format="image/png" data-original-filesize="189906" style="cursor: zoom-in;" class="image-loading"></div>
+</div>
+<div class="image-caption">压缩后的代码</div>
+</div>
+<h4>缓存</h4>
+<p>缓存无处不在，使用缓存的最好方法是保证你的文件名和文件内容是匹配的（内容改变，名称相应改变）</p>
+<p>webpack可以把一个哈希值添加到打包的文件名中，使用方法如下,添加特殊的字符串混合体（[name], [id] and [hash]）到输出文件名前</p>
+<pre class="hljs undefined"><code class="js">const webpack = require('webpack');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
+
+module.exports = {
+..
+    output: {
+        path: __dirname + "/build",
+        filename: "bundle-[hash].js"
+    },
+   ...
+};
+</code></pre>
+<p>现在用户会有合理的缓存了。</p>
+<div class="image-package">
+<div class="image-container" style="max-width: 700px; max-height: 202px;">
+<div class="image-container-fill" style="padding-bottom: 22.75%;"></div>
+<div class="image-view" data-width="888" data-height="202"><img data-original-src="//upload-images.jianshu.io/upload_images/1031000-2441bb1e9f8f5908.png" data-original-width="888" data-original-height="202" data-original-format="image/png" data-original-filesize="19212" style="cursor: zoom-in;" class="image-loading"></div>
+</div>
+<div class="image-caption">带hash值的js名</div>
+</div>
+<h4>去除<code>build</code>文件中的残余文件</h4>
+<p>添加了<code>hash</code>之后，会导致改变文件内容后重新打包时，文件名不同而内容越来越多，因此这里介绍另外一个很好用的插件<code>clean-webpack-plugin</code>。</p>
+<p><strong>安装</strong>：<br>
+<code>cnpm install clean-webpack-plugin --save-dev</code></p>
+<p><strong>使用</strong>：</p>
+<p>引入<code>clean-webpack-plugin</code>插件后在配置文件的<code>plugins</code>中做相应配置即可：</p>
+<pre class="hljs undefined"><code class="js">const CleanWebpackPlugin = require("clean-webpack-plugin");
+  plugins: [
+    ...// 这里是之前配置的其它各种插件
+    new CleanWebpackPlugin('build/*.*', {
+      root: __dirname,
+      verbose: true,
+      dry: false
+  })
+  ]
+</code></pre>
+<p>关于<code>clean-webpack-plugin</code>的详细使用可参考<a href="https://link.jianshu.com/?t=https://github.com/johnagan/clean-webpack-plugin" target="_blank" rel="nofollow">这里</a></p>
+<h3>总结</h3>
+<blockquote>
+<p>其实这是一年前的文章了，趁周末重新运行和修改了一下，现在所有的代码都可以正常运行，所用webpack基于最新的<code>webpack3.5.3</code>。希望依旧能对你有帮助。</p>
+</blockquote>
+<p>这是一篇好长的文章，谢谢你的耐心，能仔细看到了这里，大概半个月前我第一次自己一步步配置项目所需的Webpack后就一直想写一篇笔记做总结，几次动笔都不能让自己满意，总觉得写不清楚。其实关于Webpack本文讲述得仍不完全，不过相信你看完后已经进入Webpack的大门，能够更好的探索其它的关于Webpack的知识了。</p>
+<p>欢迎大家在文后发表自己的观点讨论。</p>
+<h2>更新说明</h2>
+<blockquote>
+<p>2017-12-11更新，修改<code>css module</code>部分代码及示例图片，<code>css module</code>真的非常好用，希望大家都能用上。</p>
+</blockquote>
+<blockquote>
+<p>2017年9月18日更新，添加了一个使用<code>webpack</code>配置多页应用的demo,可以点击<a href="https://link.jianshu.com/?t=https://github.com/zhangwang1990/blogs/tree/master/sources/MultiPageWebpackDemos" target="_blank" rel="nofollow">此处查看</a></p>
+</blockquote>
+<blockquote>
+<p>2017年8月13日更新，本文依据<code>webpack3.5.3</code>将文章涉及代码完全重写，所有代码都在Mac上正常运行过。希望依旧对你学习<code>webpack</code>有帮助。</p>
+</blockquote>
+<blockquote>
+<p>2017年8月16号更新：<br>
+最近在Gitchat上将发起了一场关于webpack的分享，目的在于一起花最短的时间理解和学会webpack，感兴趣的童鞋可以微信扫描注册哈。</p>
+<br>
+<div class="image-package">
+<div class="image-container" style="max-width: 161px; max-height: 203px;">
+<div class="image-container-fill" style="padding-bottom: 126.08999999999999%;"></div>
+<div class="image-view" data-width="161" data-height="203"><img data-original-src="//upload-images.jianshu.io/upload_images/1031000-67b97ffc51754afa.jpg" data-original-width="161" data-original-height="203" data-original-format="image/jpeg" data-original-filesize="48495" style="cursor: zoom-in;" class="image-loading"></div>
+</div>
+<div class="image-caption">webpack从入门到工程实践</div>
+</div>
+</blockquote>
+
+        </div>
+        <!--  -->
+
+        <div class="show-foot">
+          <a class="notebook" href="http://www.jianshu.com/nb/3227908">
+            <i class="iconfont ic-search-notebook"></i>
+            <span>前端笔记</span>
+</a>          <div class="copyright" data-toggle="tooltip" data-html="true" data-original-title="转载请联系作者获得授权，并标注“简书作者”。">
+            © 著作权归作者所有
+          </div>
+          <div class="modal-wrap" data-report-note="">
+            <a id="report-modal">举报文章</a>
+          </div>
+        </div>
+    </div>
+
+    <!-- 文章底部作者信息 -->
+      <div class="follow-detail">
+        <div class="info">
+          <a class="avatar" href="http://www.jianshu.com/u/7091a52ac9e5">
+            <img src="./入门Webpack，看这篇就够了 - 简书_files/e83d94a60691.jpg" alt="96">
+</a>          <a class="btn btn-success follow"><i class="iconfont ic-follow"></i><span>关注</span></a>
+          <a class="title" href="http://www.jianshu.com/u/7091a52ac9e5">zhangwang</a>
+          
+        <p>写了 182220 字，被 2614 人关注，获得了 2796 个喜欢</p></div>
+          <div class="signature">前端\摄影\阅读\好奇。</div>
+      </div>
+
+      <div class="support-author"></div>
+
+    <div class="meta-bottom">
+      <div class="like"><div class="btn like-group"><div class="btn-like"><a href="http://www.jianshu.com/sign_in?utm_source=desktop&amp;utm_medium=not-signed-in-like-button"><i class="iconfont ic-like"></i>喜欢</a></div> <div class="modal-wrap"><a>2193</a></div></div> <!----></div>
+      <div class="share-group">
+        <a class="share-circle" data-action="weixin-share" data-toggle="tooltip" data-original-title="分享到微信">
+          <i class="iconfont ic-wechat"></i>
+        </a>
+        <a class="share-circle" data-action="weibo-share" data-toggle="tooltip" href="javascript:void((function(s,d,e,r,l,p,t,z,c){var%20f=&#39;http://v.t.sina.com.cn/share/share.php?appkey=1881139527&#39;,u=z||d.location,p=[&#39;&amp;url=&#39;,e(u),&#39;&amp;title=&#39;,e(t||d.title),&#39;&amp;source=&#39;,e(r),&#39;&amp;sourceUrl=&#39;,e(l),&#39;&amp;content=&#39;,c||&#39;gb2312&#39;,&#39;&amp;pic=&#39;,e(p||&#39;&#39;)].join(&#39;&#39;);function%20a(){if(!window.open([f,p].join(&#39;&#39;),&#39;mb&#39;,[&#39;toolbar=0,status=0,resizable=1,width=440,height=430,left=&#39;,(s.width-440)/2,&#39;,top=&#39;,(s.height-430)/2].join(&#39;&#39;)))u.href=[f,p].join(&#39;&#39;);};if(/Firefox/.test(navigator.userAgent))setTimeout(a,0);else%20a();})(screen,document,encodeURIComponent,&#39;&#39;,&#39;&#39;,&#39;http://cwb.assets.jianshu.io/notes/images/5124994/weibo/image_3406298f5458.png&#39;, &#39;推荐 zhangwang 的文章《入门Webpack，看这篇就够了》（ 分享自 @简书 ）&#39;,&#39;http://www.jianshu.com/p/42e11515c10f?utm_campaign=maleskine&amp;utm_content=note&amp;utm_medium=reader_share&amp;utm_source=weibo&#39;,&#39;页面编码gb2312|utf-8默认gb2312&#39;));" data-original-title="分享到微博">
+          <i class="iconfont ic-weibo"></i>
+        </a>
+          <a class="share-circle" data-toggle="tooltip" href="http://cwb.assets.jianshu.io/notes/images/5124994/weibo/image_3406298f5458.png" target="_blank" data-original-title="下载长微博图片">
+            <i class="iconfont ic-picture"></i>
+          </a>
+        <a class="share-circle more-share" tabindex="0" data-toggle="popover" data-placement="top" data-html="true" data-trigger="focus" href="javascript:void(0);" data-content="
+          &lt;ul class=&quot;share-list&quot;&gt;
+            &lt;li&gt;&lt;a href=&quot;javascript:void(function(){var d=document,e=encodeURIComponent,r=&#39;http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=&#39;+e(&#39;http://www.jianshu.com/p/42e11515c10f?utm_campaign=maleskine&amp;utm_content=note&amp;utm_medium=reader_share&amp;utm_source=qzone&#39;)+&#39;&amp;title=&#39;+e(&#39;推荐 zhangwang 的文章《入门Webpack，看这篇就够了》&#39;),x=function(){if(!window.open(r,&#39;qzone&#39;,&#39;toolbar=0,resizable=1,scrollbars=yes,status=1,width=600,height=600&#39;))location.href=r};if(/Firefox/.test(navigator.userAgent)){setTimeout(x,0)}else{x()}})();&quot;&gt;&lt;i class=&quot;social-icon-sprite social-icon-zone&quot;&gt;&lt;/i&gt;&lt;span&gt;分享到QQ空间&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+            &lt;li&gt;&lt;a href=&quot;javascript:void(function(){var d=document,e=encodeURIComponent,r=&#39;https://twitter.com/share?url=&#39;+e(&#39;http://www.jianshu.com/p/42e11515c10f?utm_campaign=maleskine&amp;utm_content=note&amp;utm_medium=reader_share&amp;utm_source=twitter&#39;)+&#39;&amp;text=&#39;+e(&#39;推荐 zhangwang 的文章《入门Webpack，看这篇就够了》（ 分享自 @jianshucom ）&#39;)+&#39;&amp;related=&#39;+e(&#39;jianshucom&#39;),x=function(){if(!window.open(r,&#39;twitter&#39;,&#39;toolbar=0,resizable=1,scrollbars=yes,status=1,width=600,height=600&#39;))location.href=r};if(/Firefox/.test(navigator.userAgent)){setTimeout(x,0)}else{x()}})();&quot;&gt;&lt;i class=&quot;social-icon-sprite social-icon-twitter&quot;&gt;&lt;/i&gt;&lt;span&gt;分享到Twitter&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+            &lt;li&gt;&lt;a href=&quot;javascript:void(function(){var d=document,e=encodeURIComponent,r=&#39;https://www.facebook.com/dialog/share?app_id=483126645039390&amp;display=popup&amp;href=http://www.jianshu.com/p/42e11515c10f?utm_campaign=maleskine&amp;utm_content=note&amp;utm_medium=reader_share&amp;utm_source=facebook&#39;,x=function(){if(!window.open(r,&#39;facebook&#39;,&#39;toolbar=0,resizable=1,scrollbars=yes,status=1,width=450,height=330&#39;))location.href=r};if(/Firefox/.test(navigator.userAgent)){setTimeout(x,0)}else{x()}})();&quot;&gt;&lt;i class=&quot;social-icon-sprite social-icon-facebook&quot;&gt;&lt;/i&gt;&lt;span&gt;分享到Facebook&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+            &lt;li&gt;&lt;a href=&quot;javascript:void(function(){var d=document,e=encodeURIComponent,r=&#39;https://plus.google.com/share?url=&#39;+e(&#39;http://www.jianshu.com/p/42e11515c10f?utm_campaign=maleskine&amp;utm_content=note&amp;utm_medium=reader_share&amp;utm_source=google_plus&#39;),x=function(){if(!window.open(r,&#39;google_plus&#39;,&#39;toolbar=0,resizable=1,scrollbars=yes,status=1,width=450,height=330&#39;))location.href=r};if(/Firefox/.test(navigator.userAgent)){setTimeout(x,0)}else{x()}})();&quot;&gt;&lt;i class=&quot;social-icon-sprite social-icon-google&quot;&gt;&lt;/i&gt;&lt;span&gt;分享到Google+&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+            &lt;li&gt;&lt;a href=&quot;javascript:void(function(){var d=document,e=encodeURIComponent,s1=window.getSelection,s2=d.getSelection,s3=d.selection,s=s1?s1():s2?s2():s3?s3.createRange().text:&#39;&#39;,r=&#39;http://www.douban.com/recommend/?url=&#39;+e(&#39;http://www.jianshu.com/p/42e11515c10f?utm_campaign=maleskine&amp;utm_content=note&amp;utm_medium=reader_share&amp;utm_source=douban&#39;)+&#39;&amp;title=&#39;+e(&#39;入门Webpack，看这篇就够了&#39;)+&#39;&amp;sel=&#39;+e(s)+&#39;&amp;v=1&#39;,x=function(){if(!window.open(r,&#39;douban&#39;,&#39;toolbar=0,resizable=1,scrollbars=yes,status=1,width=450,height=330&#39;))location.href=r+&#39;&amp;r=1&#39;};if(/Firefox/.test(navigator.userAgent)){setTimeout(x,0)}else{x()}})()&quot;&gt;&lt;i class=&quot;social-icon-sprite social-icon-douban&quot;&gt;&lt;/i&gt;&lt;span&gt;分享到豆瓣&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+          &lt;/ul&gt;
+        " data-original-title="" title="">更多分享</a>
+      </div>
+    </div>
+      <a id="web-note-ad-1" target="_blank" href="http://www.jianshu.com/apps/download?utm_source=nbc"><img src="./入门Webpack，看这篇就够了 - 简书_files/web-note-ad-1-10f08e404d3887d2d45a4bc8f1831403.png" alt="Web note ad 1"></a>
+    <div id="vue_comment"></div>
+  </div>
+
+  <div class="side-tool"><ul><li data-placement="left" data-toggle="tooltip" data-container="body" data-original-title="回到顶部" style="display: none;"><a class="function-button"><i class="iconfont ic-backtop"></i></a></li> <!----> <!----> <li data-placement="left" data-toggle="tooltip" data-container="body" data-original-title="分享文章"><a tabindex="0" role="button" data-toggle="popover" data-placement="left" data-html="true" data-trigger="focus" href="javascript:void(0);" data-content="&lt;ul class=&#39;share-list&#39;&gt;
+                &lt;li&gt;&lt;a class=&quot;weixin-share&quot;&gt;&lt;i class=&quot;social-icon-sprite social-icon-weixin&quot;&gt;&lt;/i&gt;&lt;span&gt;分享到微信&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+                &lt;li&gt;&lt;a href=&quot;javascript:void((function(s,d,e,r,l,p,t,z,c){var%20f=&#39;http://v.t.sina.com.cn/share/share.php?appkey=1881139527&#39;,u=z||d.location,p=[&#39;&amp;url=&#39;,e(u),&#39;&amp;title=&#39;,e(t||d.title),&#39;&amp;source=&#39;,e(r),&#39;&amp;sourceUrl=&#39;,e(l),&#39;&amp;content=&#39;,c||&#39;gb2312&#39;,&#39;&amp;pic=&#39;,e(p||&#39;&#39;)].join(&#39;&#39;);function%20a(){if(!window.open([f,p].join(&#39;&#39;),&#39;mb&#39;,[&#39;toolbar=0,status=0,resizable=1,width=440,height=430,left=&#39;,(s.width-440)/2,&#39;,top=&#39;,(s.height-430)/2].join(&#39;&#39;)))u.href=[f,p].join(&#39;&#39;);};if(/Firefox/.test(navigator.userAgent))setTimeout(a,0);else%20a();})(screen,document,encodeURIComponent,&#39;&#39;,&#39;&#39;,&#39;http://cwb.assets.jianshu.io/notes/images/5124994/weibo/image_3406298f5458.png&#39;, &#39;推荐 zhangwang 的文章《入门Webpack，看这篇就够了》（ 分享自 @简书 ）&#39;,&#39;http://www.jianshu.com/p/42e11515c10f?utm_campaign=maleskine&amp;utm_content=note&amp;utm_medium=reader_share&amp;utm_source=weibo&#39;,&#39;页面编码gb2312|utf-8默认gb2312&#39;));&quot;&gt;&lt;i class=&#39;social-icon-sprite social-icon-weibo&#39;&gt;&lt;/i&gt;&lt;span&gt;分享到微博&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+                &lt;li&gt;&lt;a href=&quot;http://cwb.assets.jianshu.io/notes/images/5124994/weibo/image_3406298f5458.png&quot; target=&quot;_blank&quot;&gt;&lt;i class=&quot;social-icon-sprite social-icon-picture&quot;&gt;&lt;/i&gt;&lt;span&gt;下载长微博图片&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+                &lt;li&gt;&lt;a href=&quot;javascript:void(function(){var d=document,e=encodeURIComponent,r=&#39;http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=&#39;+e(&#39;http://www.jianshu.com/p/42e11515c10f?utm_campaign=maleskine&amp;utm_content=note&amp;utm_medium=reader_share&amp;utm_source=qzone&#39;)+&#39;&amp;title=&#39;+e(&#39;推荐 zhangwang 的文章《入门Webpack，看这篇就够了》&#39;),x=function(){if(!window.open(r,&#39;qzone&#39;,&#39;toolbar=0,resizable=1,scrollbars=yes,status=1,width=600,height=600&#39;))location.href=r};if(/Firefox/.test(navigator.userAgent)){setTimeout(x,0)}else{x()}})();&quot;&gt;&lt;i class=&#39;social-icon-sprite social-icon-zone&#39;&gt;&lt;/i&gt;&lt;span&gt;分享到QQ空间&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+                &lt;li&gt;&lt;a href=&quot;javascript:void(function(){var d=document,e=encodeURIComponent,r=&#39;https://twitter.com/share?url=&#39;+e(&#39;http://www.jianshu.com/p/42e11515c10f?utm_campaign=maleskine&amp;utm_content=note&amp;utm_medium=reader_share&amp;utm_source=twitter&#39;)+&#39;&amp;text=&#39;+e(&#39;推荐 zhangwang 的文章《入门Webpack，看这篇就够了》（ 分享自 @jianshucom ）&#39;)+&#39;&amp;related=&#39;+e(&#39;jianshucom&#39;),x=function(){if(!window.open(r,&#39;twitter&#39;,&#39;toolbar=0,resizable=1,scrollbars=yes,status=1,width=600,height=600&#39;))location.href=r};if(/Firefox/.test(navigator.userAgent)){setTimeout(x,0)}else{x()}})();&quot;&gt;&lt;i class=&#39;social-icon-sprite social-icon-twitter&#39;&gt;&lt;/i&gt;&lt;span&gt;分享到Twitter&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+                &lt;li&gt;&lt;a href=&quot;javascript:void(function(){var d=document,e=encodeURIComponent,r=&#39;https://www.facebook.com/dialog/share?app_id=483126645039390&amp;display=popup&amp;href=http://www.jianshu.com/p/42e11515c10f?utm_campaign=maleskine&amp;utm_content=note&amp;utm_medium=reader_share&amp;utm_source=facebook&#39;,x=function(){if(!window.open(r,&#39;facebook&#39;,&#39;toolbar=0,resizable=1,scrollbars=yes,status=1,width=450,height=330&#39;))location.href=r};if(/Firefox/.test(navigator.userAgent)){setTimeout(x,0)}else{x()}})();&quot;&gt;&lt;i class=&#39;social-icon-sprite social-icon-facebook&#39;&gt;&lt;/i&gt;&lt;span&gt;分享到Facebook&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+                &lt;li&gt;&lt;a href=&quot;javascript:void(function(){var d=document,e=encodeURIComponent,r=&#39;https://plus.google.com/share?url=&#39;+e(&#39;http://www.jianshu.com/p/42e11515c10f?utm_campaign=maleskine&amp;utm_content=note&amp;utm_medium=reader_share&amp;utm_source=google_plus&#39;),x=function(){if(!window.open(r,&#39;google_plus&#39;,&#39;toolbar=0,resizable=1,scrollbars=yes,status=1,width=450,height=330&#39;))location.href=r};if(/Firefox/.test(navigator.userAgent)){setTimeout(x,0)}else{x()}})();&quot;&gt;&lt;i class=&#39;social-icon-sprite social-icon-google&#39;&gt;&lt;/i&gt;&lt;span&gt;分享到Google+&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+                &lt;li&gt;&lt;a href=&quot;javascript:void(function(){var d=document,e=encodeURIComponent,s1=window.getSelection,s2=d.getSelection,s3=d.selection,s=s1?s1():s2?s2():s3?s3.createRange().text:&#39;&#39;,r=&#39;http://www.douban.com/recommend/?url=&#39;+e(&#39;http://www.jianshu.com/p/42e11515c10f?utm_campaign=maleskine&amp;utm_content=note&amp;utm_medium=reader_share&amp;utm_source=douban&#39;)+&#39;&amp;title=&#39;+e(&#39;入门Webpack，看这篇就够了&#39;)+&#39;&amp;sel=&#39;+e(s)+&#39;&amp;v=1&#39;,x=function(){if(!window.open(r,&#39;douban&#39;,&#39;toolbar=0,resizable=1,scrollbars=yes,status=1,width=450,height=330&#39;))location.href=r+&#39;&amp;r=1&#39;};if(/Firefox/.test(navigator.userAgent)){setTimeout(x,0)}else{x()}})()&quot;&gt;&lt;i class=&#39;social-icon-sprite social-icon-douban&#39;&gt;&lt;/i&gt;&lt;span&gt;分享到豆瓣&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+              &lt;/ul&gt;" data-original-title="" title="" class="function-button"><i class="iconfont ic-share"></i></a> <!----></li> <!----></ul></div>
+</div>
+<div class="note-bottom">
+  <div><div class="main"><div class="title">被以下专题收入，发现更多相似内容</div> <!----> <div class="include-collection"><!----> <a href="http://www.jianshu.com/c/bfb5f14ca7fe?utm_source=desktop&amp;utm_medium=notes-included-collection" target="_blank" class="item"><img src="./入门Webpack，看这篇就够了 - 简书_files/logo.jpg"><div class="name">前端之旅</div></a><a href="http://www.jianshu.com/c/bDHhpK?utm_source=desktop&amp;utm_medium=notes-included-collection" target="_blank" class="item"><img src="./入门Webpack，看这篇就够了 - 简书_files/首页投稿.png"><div class="name">首页投稿</div></a><a href="http://www.jianshu.com/c/0020d95b7928?utm_source=desktop&amp;utm_medium=notes-included-collection" target="_blank" class="item"><img src="./入门Webpack，看这篇就够了 - 简书_files/web开发.JPG"><div class="name">前端开发那些事</div></a><a href="http://www.jianshu.com/c/NEt52a?utm_source=desktop&amp;utm_medium=notes-included-collection" target="_blank" class="item"><img src="./入门Webpack，看这篇就够了 - 简书_files/computer_guy.jpg"><div class="name">程序员</div></a><a href="http://www.jianshu.com/c/1f37d896b5de?utm_source=desktop&amp;utm_medium=notes-included-collection" target="_blank" class="item"><img src="./入门Webpack，看这篇就够了 - 简书_files/m.jpg"><div class="name">MobDevG...</div></a><a href="http://www.jianshu.com/c/794aaea3cf01?utm_source=desktop&amp;utm_medium=notes-included-collection" target="_blank" class="item"><img src="./入门Webpack，看这篇就够了 - 简书_files/images.jpg"><div class="name">全栈开发者</div></a><a href="http://www.jianshu.com/c/baced03d8a91?utm_source=desktop&amp;utm_medium=notes-included-collection" target="_blank" class="item"><img src="./入门Webpack，看这篇就够了 - 简书_files/147.pic.jpg"><div class="name">Web前段开发记录</div></a> <a class="show-more">
+        展开更多
+        <i class="iconfont ic-show"></i></a></div></div> <!----> <!----></div>
+  <div data-vcomp="recommended-notes" data-note-id="5124994"></div>
+  <!-- 相关文章 -->
+  <div class="seo-recommended-notes">
+
+        <div class="note ">
+                    <a class="title" target="_blank" href="http://www.jianshu.com/p/ca76ae7652e7?utm_campaign=maleskine&amp;utm_content=note&amp;utm_medium=seo_notes&amp;utm_source=recommendation">翻译 | 上手 Webpack ? 这篇就够了！</a>
+          <p class="description">作者：小 boy （沪江前端开发工程师）本文原创，转载请注明作者及出处。原文地址：https://www.smashingmagazine.com/2017/02/a-detailed-introduction-to-webpack JavaSript 模块化打包已混迹江湖...</p>
+          <a class="author" target="_blank" href="http://www.jianshu.com/u/8d80133b96e5?utm_campaign=maleskine&amp;utm_content=user&amp;utm_medium=seo_notes&amp;utm_source=recommendation">
+            <div class="avatar">
+              <img src="./入门Webpack，看这篇就够了 - 简书_files/b3abe4b4-678d-4a4c-b6d7-3c90da9bc6cc.png" alt="48">
+            </div>
+            <span class="name">iKcamp</span>
+</a>        </div>
+
+        <div class="note have-img">
+          <a class="cover" target="_blank" href="http://www.jianshu.com/p/b83a251d53db?utm_campaign=maleskine&amp;utm_content=note&amp;utm_medium=seo_notes&amp;utm_source=recommendation">
+            <img src="./入门Webpack，看这篇就够了 - 简书_files/6171922-d747406cb169a6d7.png" alt="240">
+</a>          <a class="title" target="_blank" href="http://www.jianshu.com/p/b83a251d53db?utm_campaign=maleskine&amp;utm_content=note&amp;utm_medium=seo_notes&amp;utm_source=recommendation">你一定喜欢看的 Webpack 2.× 入门实战</a>
+          <p class="description">最近在学习 Webpack,网上大多数入门教程都是基于 Webpack 1.x 版本的,我学习 Webpack 的时候是看了 zhangwang 的 &lt;&lt;入门 Webpack，看这篇就够了&gt;&gt; 写的非常好,不过是基于 Webpack 1.x 版本的,语法上和 Webpack...</p>
+          <a class="author" target="_blank" href="http://www.jianshu.com/u/666067560d68?utm_campaign=maleskine&amp;utm_content=user&amp;utm_medium=seo_notes&amp;utm_source=recommendation">
+            <div class="avatar">
+              <img src="./入门Webpack，看这篇就够了 - 简书_files/ca35e97b-77e1-4fae-b16f-ca948c0f6fcf" alt="48">
+            </div>
+            <span class="name">My_Oh_My</span>
+</a>        </div>
+
+        <div class="note have-img">
+          <a class="cover" target="_blank" href="http://www.jianshu.com/p/5b69a7e61fe4?utm_campaign=maleskine&amp;utm_content=note&amp;utm_medium=seo_notes&amp;utm_source=recommendation">
+            <img src="./入门Webpack，看这篇就够了 - 简书_files/1031000-d0693c06bb3a00e3(1).png" alt="240">
+</a>          <a class="title" target="_blank" href="http://www.jianshu.com/p/5b69a7e61fe4?utm_campaign=maleskine&amp;utm_content=note&amp;utm_medium=seo_notes&amp;utm_source=recommendation">webpack教程</a>
+          <p class="description">无意中看到zhangwnag大佬分享的webpack教程感觉受益匪浅，特此分享以备自己日后查看，也希望更多的人看到这篇好的文章：http://www.jianshu.com/p/42e11515c10f 写在前面的话阅读本文之前，先看下面这个webpack的配置文件，如果每...</p>
+          <a class="author" target="_blank" href="http://www.jianshu.com/u/1689862fc5a0?utm_campaign=maleskine&amp;utm_content=user&amp;utm_medium=seo_notes&amp;utm_source=recommendation">
+            <div class="avatar">
+              <img src="./入门Webpack，看这篇就够了 - 简书_files/568dd990dbc8.jpg" alt="48">
+            </div>
+            <span class="name">小小字符</span>
+</a>        </div>
+
+        <div class="note ">
+                    <a class="title" target="_blank" href="http://www.jianshu.com/p/9349c30a6b3e?utm_campaign=maleskine&amp;utm_content=note&amp;utm_medium=seo_notes&amp;utm_source=recommendation">webpack 从入门到工程实践</a>
+          <p class="description">GitChat技术杂谈 前言 本文较长，为了节省你的阅读时间，在文前列写作思路如下： 什么是 webpack，它要解决的是什么问题？ 对webpack的主要配置项进行分析，虽然不会涉及太多细节，但是期待在本节能让我们知晓如果我们有什么需求，我们该从哪些配置项着手修改？ 分析...</p>
+          <a class="author" target="_blank" href="http://www.jianshu.com/u/654b04d75afb?utm_campaign=maleskine&amp;utm_content=user&amp;utm_medium=seo_notes&amp;utm_source=recommendation">
+            <div class="avatar">
+              <img src="./入门Webpack，看这篇就够了 - 简书_files/8-a356878e44b45ab268a3b0bbaaadeeb7.jpg" alt="48">
+            </div>
+            <span class="name">玄辞</span>
+</a>        </div>
+
+        <div class="note ">
+                    <a class="title" target="_blank" href="http://www.jianshu.com/p/d074301c1bfa?utm_campaign=maleskine&amp;utm_content=note&amp;utm_medium=seo_notes&amp;utm_source=recommendation">无标题文章</a>
+          <p class="description">从V1迁移到V2由于使用的是webpack版本是2.2.1，所以针对原文做了一些修改。针对webpack2的修改部分和添加的部分在最底部，文中已经改过来了。 写在前面的话阅读本文之前，先看下面这个webpack的配置文件，如果每一项你都懂，那本文能带给你的收获也许就比较有限...</p>
+          <a class="author" target="_blank" href="http://www.jianshu.com/u/304734d3ba47?utm_campaign=maleskine&amp;utm_content=user&amp;utm_medium=seo_notes&amp;utm_source=recommendation">
+            <div class="avatar">
+              <img src="./入门Webpack，看这篇就够了 - 简书_files/45a05734018b.jpg" alt="48">
+            </div>
+            <span class="name">yzc123446</span>
+</a>        </div>
+
+        <div class="note have-img">
+          <a class="cover" target="_blank" href="http://www.jianshu.com/p/aacd587ae852?utm_campaign=maleskine&amp;utm_content=note&amp;utm_medium=seo_notes&amp;utm_source=recommendation">
+            <img src="./入门Webpack，看这篇就够了 - 简书_files/6319637-01bd4eaac41520f5.jpg" alt="240">
+</a>          <a class="title" target="_blank" href="http://www.jianshu.com/p/aacd587ae852?utm_campaign=maleskine&amp;utm_content=note&amp;utm_medium=seo_notes&amp;utm_source=recommendation">夫妻关系成长第19天---爱是舍得花时间</a>
+          <p class="description">夫妻关系成长作业（8月13日）：爱是舍得花时间 ❤特意取消你平日常做的某件事，花时间和你的伴侣好好欢聚。做些他喜欢的事，或是开始某个他很想进行的计划，总之要在一起。如果他不愿意一起做，请尝试和他做一样的事，充分体验那发生的一切。 自我检视： 完成今天的行动之后，对照以下问题...</p>
+          <a class="author" target="_blank" href="http://www.jianshu.com/u/13e0d53ed96f?utm_campaign=maleskine&amp;utm_content=user&amp;utm_medium=seo_notes&amp;utm_source=recommendation">
+            <div class="avatar">
+              <img src="./入门Webpack，看这篇就够了 - 简书_files/a8b27321-e17e-4021-ab26-f3e43cf1cca3.jpg" alt="48">
+            </div>
+            <span class="name">感恩有你李瑞</span>
+</a>        </div>
+
+        <div class="note ">
+                    <a class="title" target="_blank" href="http://www.jianshu.com/p/8d13197a2f90?utm_campaign=maleskine&amp;utm_content=note&amp;utm_medium=seo_notes&amp;utm_source=recommendation">狗</a>
+          <p class="description">婆婆嘴</p>
+          <a class="author" target="_blank" href="http://www.jianshu.com/u/cc430be9bc98?utm_campaign=maleskine&amp;utm_content=user&amp;utm_medium=seo_notes&amp;utm_source=recommendation">
+            <div class="avatar">
+              <img src="./入门Webpack，看这篇就够了 - 简书_files/1aba88074073" alt="48">
+            </div>
+            <span class="name">ymm201314</span>
+</a>        </div>
+
+        <div class="note ">
+                    <a class="title" target="_blank" href="http://www.jianshu.com/p/521604bc9466?utm_campaign=maleskine&amp;utm_content=note&amp;utm_medium=seo_notes&amp;utm_source=recommendation">《念情伤》</a>
+          <p class="description">梦断长安殇别离。 而今思情明月时， 梅落回首心戚戚。 作品导读：     此诗配古琴曲《长门怨》，当年长安，金屋藏娇，到头来，只余长门赋，世事变迁，难得长久，思情浮现，知己曾有期盼终身之人，而今却因病患导致此情支离破碎，生命诚可贵，爱情价更高。但是，在面对现实时，何不似当年。</p>
+          <a class="author" target="_blank" href="http://www.jianshu.com/u/03697c683ed6?utm_campaign=maleskine&amp;utm_content=user&amp;utm_medium=seo_notes&amp;utm_source=recommendation">
+            <div class="avatar">
+              <img src="./入门Webpack，看这篇就够了 - 简书_files/417601a1-a7f5-4c12-ba4f-200383fb6899.jpg" alt="48">
+            </div>
+            <span class="name">林端木</span>
+</a>        </div>
+
+        <div class="note ">
+                    <a class="title" target="_blank" href="http://www.jianshu.com/p/c76433765481?utm_campaign=maleskine&amp;utm_content=note&amp;utm_medium=seo_notes&amp;utm_source=recommendation">依赖</a>
+          <p class="description">最好的爱情，依赖而不纠缠。或许每个人都应该具备这么一个能力，一个局内局外切换的能力。当自己身处局内，一切便方寸大乱，没了自我。咱们的感情或许是时候升级了，升级到一个新的阶段，升级到一个更高的阶段。今天的不愉快，应该成为明天的教训，不知足，占有欲，小心眼，一个也躲不过的来了。...</p>
+          <a class="author" target="_blank" href="http://www.jianshu.com/u/be139214c52b?utm_campaign=maleskine&amp;utm_content=user&amp;utm_medium=seo_notes&amp;utm_source=recommendation">
+            <div class="avatar">
+              <img src="./入门Webpack，看这篇就够了 - 简书_files/043f64c9-93bc-4c7e-a7e7-fe1c735566c9.jpg" alt="48">
+            </div>
+            <span class="name">田老九</span>
+</a>        </div>
+
+        <div class="note have-img">
+          <a class="cover" target="_blank" href="http://www.jianshu.com/p/964585cc49f1?utm_campaign=maleskine&amp;utm_content=note&amp;utm_medium=seo_notes&amp;utm_source=recommendation">
+            <img src="./入门Webpack，看这篇就够了 - 简书_files/2474247-9ad82f1eae0ec8a1.jpg" alt="240">
+</a>          <a class="title" target="_blank" href="http://www.jianshu.com/p/964585cc49f1?utm_campaign=maleskine&amp;utm_content=note&amp;utm_medium=seo_notes&amp;utm_source=recommendation">叶</a>
+          <p class="description">十分喜欢开着鲜花的植物，或锦绣繁荣或清雅美丽，但也很喜欢看到那些散种在土中的小小的、形态各异的花花草草，充满了山野之趣。 越是一小株越是惹人怜爱。小而完整，有的甚至还开着小小的花。一两片叶子就是一个完整的植株，竟然在阳光下还绿油油地发亮。有的只刚刚从土中冒出一点点的叶尖，就...</p>
+          <a class="author" target="_blank" href="http://www.jianshu.com/u/a2bad928e034?utm_campaign=maleskine&amp;utm_content=user&amp;utm_medium=seo_notes&amp;utm_source=recommendation">
+            <div class="avatar">
+              <img src="./入门Webpack，看这篇就够了 - 简书_files/1a6c1cb4753f.jpeg" alt="48">
+            </div>
+            <span class="name">夏栀丶</span>
+</a>        </div>
+  </div>
+</div>
+
+    <script type="application/json" data-name="page-data">{"user_signed_in":false,"locale":"zh-CN","os":"windows","read_mode":"day","read_font":"font2","note_show":{"is_martin_user":false,"is_author":false,"is_following_author":false,"is_liked_note":false,"follow_state":0,"uuid":"233df969-2434-40aa-958f-cabb167f4326"},"note":{"id":5124994,"slug":"42e11515c10f","user_id":1031000,"notebook_id":3227908,"commentable":true,"likes_count":2193,"views_count":536225,"public_wordage":7229,"comments_count":724,"total_rewards_count":80,"is_author":false,"author":{"nickname":"zhangwang","total_wordage":182220,"followers_count":2614,"total_likes_count":2796}}}</script>
+    
+    <script src="./入门Webpack，看这篇就够了 - 简书_files/babel-polyfill-e27dec85eeb94683dfc7.js.download" crossorigin="anonymous"></script>
+    <script src="./入门Webpack，看这篇就够了 - 简书_files/web-base-d79e9b7e602fb32df34e.js.download" crossorigin="anonymous"></script>
+<script src="./入门Webpack，看这篇就够了 - 简书_files/web-422095a7b90654d2281c.js.download" crossorigin="anonymous"></script>
+    
+    <script src="./入门Webpack，看这篇就够了 - 简书_files/entry-91ed4114a956a03ac80f.js.download" crossorigin="anonymous"></script>
+    <script>
+  (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      if (curProtocol === 'https') {
+          bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+      }
+      else {
+          bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+      }
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+  })();
+</script>
+
+  
+
+<!----><!----></body></html>

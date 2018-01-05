@@ -30,3 +30,5 @@ My daily personal testing demo &amp; learning notes
 #### responsive navbar
 
 #### Webpack Learning
+
+#### JS notes (code blocks)

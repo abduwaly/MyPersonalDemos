@@ -1,0 +1,121 @@
+<html>
+	<head>
+		<title>Laisee Winners</title>
+		<style>
+			body{
+				margin:0;
+				padding:0;
+				height:100%;
+				width:100%;
+			}
+			.web_title{
+				height:100px;
+				width:100%;
+			}
+			.web_title h1{
+				line-height: 100px;
+				display: inline;
+				margin: 0;
+				padding: 0;
+				margin-left: 30px;
+			}
+			#main-content{
+				width: 100%;
+				height: 100%;
+			}
+			#search-content{
+				float:right;
+				padding-top: 60px;
+				padding-right: 30px;
+			}
+			input,button{
+				height:2em;
+			}
+			table{
+				margin: 50px auto;
+				width: 80%;
+				font-size: 1.2em;
+			}
+			thead{
+				background: #d4d4d4;
+			}
+			tr td{
+				text-align: center;
+			}
+		</style>
+	</head>
+	<body>
+		<div class='web_title'>
+			<h1>Laisee Winners</h1>
+			<div id='search-content'>
+				<input  id='input-val' onkeyup="checkInput();" type='text' placeholder='input roomNo or staffId'>
+				<button onclick="search('byRoom');" disabled>Search by roomNo.</button>
+				<button onclick="search('byStaff');" disabled>Search by staffId</button>
+				&nbsp;&nbsp;&nbsp;
+				<button onclick="search();">ALL</button>
+			</div>
+		</div>
+		<hr>
+		<div id='main-content'>
+			<table>
+				<thead>
+					<th>Staff ID</th>
+					<th>Staff Name</th>
+					<th>Quantity (RMB)</th>
+					<th>Room No.</th>
+				</thead>
+				<tbody>
+
+				</tbody>
+			</table>
+		</div>
+	</body>
+	<script type="text/javascript" src="./lib/jquery-1.8.3.min.js"></script>
+	<script>
+		$(document).ready(function () {
+			search();
+		});
+		function checkInput() {
+			var value = $("#input-val").val().trim();
+			if(value){
+				$('#search-content button').removeAttr('disabled');
+			}else{
+				$('#search-content button').slice(0,2).attr('disabled','disabled');
+			}
+		}
+		function search(type) {
+			var url = 'https://prod.redgltc.com:8443/staff/giftWinner/getGifttWinner';
+			if(type){
+				var inputVal = $("#input-val").val().trim();
+				if(type == 'byRoom'){
+					url += '?roomNo=' + inputVal;
+				}else if(type == 'byStaff'){
+					url += '?staffId=' + inputVal;
+				}
+			}else{
+				$("#input-val").val('');
+				$('#search-content button').slice(0,2).attr('disabled','disabled');
+			}
+			//request
+			$.get(url,function (result) {
+				console.log(result);
+				renderWinners(result.data);
+			});
+
+		}
+		function renderWinners(winners) {
+			var template = '';
+			if(winners){
+				$.each(winners,function (index,val) {
+					template += ' <tr>' +
+							'<td>'+ val.staffId +'</td>' +
+							'<td>'+ val.staffName +'</td>' +
+							'<td>'+ val.money +'</td>' +
+							'<td>'+ val.roomNo +'</td>' +
+							'</tr>';
+				});
+			}
+			$("#main-content table tbody").html(template);
+		}
+	</script>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Circle</title>
+		<style>
+			#myCanvas{
+				box-shadow: 0 0 5px black;
+			}
+		</style>
+	</head>
+	<body>
+		<canvas id="myCanvas" width="500" height="500"></canvas>
+	</body>
+	<script>
+		var canvas = document.getElementById("myCanvas");
+		var ctx = canvas.getContext("2d");
+		//中心点
+		var cx = canvas.width/2;
+		var cy = canvas.height/2;
+		//把画布原点放在中间
+		ctx.translate(cx,cy);
+		
+		var i = 0;
+			
+		function draw(i){
+			ctx.save();
+			ctx.beginPath();
+			ctx.strokeStyle = "red";
+			ctx.lineWidth = 1;
+			ctx.arc(0,0,200,0,Math.PI/180*i,false);
+			ctx.stroke();
+			ctx.restore();	
+		}
+		var timer = setInterval(function(){
+			ctx.clearRect(-cx,-cy,canvas.width,canvas.height);
+			i>360 ? clearInterval(timer) : false;	
+			draw(i++);
+		},20);
+		
+		
+	</script>
+</html>

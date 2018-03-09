@@ -3,7 +3,7 @@ html{
 }
 body {
     margin: 0;
-	background: #f0f1f3;
+	background: #f4f4f4;
 	height:100%;
 }
 
@@ -98,6 +98,7 @@ nav ul li a:hover {
 	display:inline-block;
 	margin:0;
 	vertical-align: middle;
+	padding-left: 0;
 }
 
 .copyright ul li{
@@ -128,7 +129,9 @@ nav ul li a:hover {
 .wechat a{
 	background-image:url(../img/wechat.png);
 }
-
+.sf a{
+	background-image:url(../img/icon-sf.png);
+}
 
 
 /* Responsive for smaller screens */
@@ -136,10 +139,6 @@ nav ul li a:hover {
 @media (max-width: 760px) {
 	.htmleaf-header{
 		display:none;
-	}
-	#footer{
-		text-align:left;
-		padding-left:2em;
 	}
     #menu_button_wrapper{
         display: block;

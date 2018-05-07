@@ -9,5 +9,8 @@
     "build": "webpack --mode production"
   },
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "webpack": "^4.6.0"
+  }
 }
